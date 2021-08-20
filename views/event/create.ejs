@@ -1,0 +1,46 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
+<div class="container">
+        <div class="row shadow-sm p-3 mb-3 bg-body rounded  mt-5">
+        <div class="col-md-12">
+            <h2 style="font-family:Didot;">Add Event:</h2>
+            <hr>
+       
+            <%- include('../partials/flashMessages') -%>      
+            <form  action="/events/create" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" placeholder="Name" id="name" class="form-control">
+                </div>
+
+                    <div class="form-group">
+                            <label for="max">Max participants</label>
+                            <input type="number" name="max" placeholder="Max participants" id="max" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                                <label for="date">Start date</label>
+                                <input type="date" name="date" id="date" min="2021-06-06" max="2023-12-31" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="dateend">End date</label>
+                                <input type="date" name="dateend" id="dateend" min="2021-06-06" max="2023-12-31" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="notes">Notes</label>
+                               <textarea name="notes" id="notes" placeholder="notes" rows="4" class="form-control"></textarea>
+                            </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+            </form>
+       
+    </div>
+    <hr>
+<div class="p-3 sticky-bottom">&copy; Raed ElMajdoub. All rights reserved.</div>
+<hr>
+</div>
+
+    
+<%- include('../partials/footer') -%>

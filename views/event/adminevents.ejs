@@ -1,0 +1,56 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/navbaradmin') -%>
+<div class="container">
+  
+    <div class="row mt-5">
+<div class="col md-12">
+    <%- include('../partials/flashMessages') -%>
+</div>      
+    
+    </div>
+
+    
+    
+  <% chunk.forEach((HayaM3ana)=> {%>
+    <div class="row">
+        <% HayaM3ana.forEach((event)=> {%>
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+              <h4 style="font-style: italic;"> <%= event.typeevent%></h4>
+              </div>
+              <div class="card-body">
+                <a href="<%=  '/HayaM3ana/showadmin/'  + event.id %>" class="card-title "><h3 class="text-info"><%=event.title %></h3></a>
+                <h6><b>Localisation :</b> <%= event.location.substr(0, 34)%>...</h6>
+                <p class="card-text"><b>Description : </b><%= event.description.substr(0, 100)%>...</p>
+                <a href="tel:<%= event.num%>"> <h4 class="text-success text-center"><%= event.num%></h4></a>
+               
+              </div>
+            </div>
+              
+          </div>
+          <%})%>
+    </div>
+
+  <%})%>
+<div class="row">
+  <div class="col-12 mt-2 mb-4">
+    <nav aria-label="...">
+      <ul class="pagination pagination-lg justify-content-center">
+        <% for (let i=1 ; i <= Math.ceil(total/5); i++) {%>
+        
+          <% if (pageNo == i) {%>
+            <li class="page-item active mb-4"><a class="page-link" href="<%= '/HayaM3ana/' + i%>"><%= i%></a></li>
+          <%} else { %>
+          <li class="page-item"><a class="page-link" href="<%= '/HayaM3ana/' + i%>"><%= i%></a></li>
+          <%}%>
+        
+        <%}%>
+      </ul>
+    </nav>
+  </div>
+</div>
+</div>
+
+<%- include('../partials/copyright') -%>
+<%- include('../partials/footer') -%>

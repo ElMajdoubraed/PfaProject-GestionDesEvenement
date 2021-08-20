@@ -1,0 +1,68 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
+
+<% if ((user)&&(user.block=="true")) { %>
+  <div class="container mt-5">
+    <div class="alert alert-danger text-center" role="alert">
+      ** All posts are monitored by the administration, and all violators are banned. **
+    </div>
+  </div>
+  <% } else { %>
+   
+<div class="container">
+  
+    <div class="row mt-5">
+<div class="col md-12">
+    <%- include('../partials/flashMessages') -%>
+</div>      
+    
+    </div>
+
+    
+    
+  <% chunk.forEach((HayaM3ana)=> {%>
+    <div class="row">
+        <% HayaM3ana.forEach((event)=> {%>
+          <div class="col-xl-4 col-12">
+            <div class="card mb-3">
+              <div class="card-header">
+                <%if (event.status=="Open")  {%>
+              <h5 class="text-success"> <%=event.status%></h5>
+              <%} else { %>
+                <h5 class="text-danger"> <%=event.status%></h5>
+                <%}%>
+              </div>
+              <div class="card-body">
+                <a href="<%=  '/events/show/'  + event.id %>" class="card-title "><h4 class="text-info"><%=event.name %></h4></a>
+                <h6><b>Start Date :</b> <%=event.startdate.toDateString()%></h6>
+                <h6><b>End Date : </b><%= event.enddate.toDateString()%></h6>
+                <h6> <b>Max participants : </b><%= event.max%> </h6>
+              </div>
+            </div>
+              
+          </div>
+          <%})%>
+    </div>
+
+  <%})%>
+<div class="row">
+  <div class="col-12 mt-2 mb-4">
+    <nav aria-label="...">
+      <ul class="pagination pagination-lg justify-content-center">
+        <% for (let i=1 ; i <= Math.ceil(total/6); i++) {%>
+        
+          <% if (pageNo == i) {%>
+            <li class="page-item active mb-4"><a class="page-link" href="<%= '/events/' + i%>"><%= i%></a></li>
+          <%} else { %>
+          <li class="page-item"><a class="page-link" href="<%= '/events/' + i%>"><%= i%></a></li>
+          <%}%>
+        
+        <%}%>
+      </ul>
+    </nav>
+  </div>
+</div>
+</div>
+<%}  %>
+<%- include('../partials/copyright') -%>
+<%- include('../partials/footer') -%>

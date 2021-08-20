@@ -1,0 +1,2057 @@
+<% if((user)&&(user.admin=="true")) { %>
+    <%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
+<div class="container">
+<div class="mt-4">
+   
+    <div class="col-md-9 offset-md-1">
+        <div class="card">
+                    
+            <div class="card-body">
+                <h5 class="card-title"><%=event.name %></h5>
+                <hr>
+                <%if (event.status=="Open")  {%>
+                    <h5 class="text-success"> <%=event.status%></h5>
+                    <%} else { %>
+                      <h5 class="text-danger"> <%=event.status%></h5>
+                      <%}%>
+                <p>Start date : <span class="badge badge-success"><%=event.startdate.toDateString()%></span> </p>
+                <p>End date : <span class="badge badge-danger"><%=event.enddate.toDateString()%></span> </p>
+                <p class="card-text">Max participants : <%=event.max%></p>
+                <p>Created at : <span class="badge badge-secondary"><%=event.created_at.toDateString()%></span> </p>
+                <%if ((event.remarque==null)||(event.remarque==""))  {%>
+                    <%} else { %>
+                      <p><b>Notes : </b> <%=event.remarque%></p>
+                      <%}%>
+                <% if ((user) && (user.admin== "true")) {%>
+                    <a href="<%= '/events/edit/'+ event.id %>" class="btn btn-primary">Edit</a>
+                    <button class="btn btn-danger" onclick="deleteEvent()" id="deleteBtn" data-id="<%= event.id%>">Delete</button>
+                <%} else {%>
+
+                    <%}%>
+                    <br class=>
+                    <a href="<%=  '/events/EventAttribut/'+ event.id %>"><button class="btn btn-primary btn-margin mt-2">Show event attribut</button></a>
+            </div>
+        </div>
+        <% if((user)&&(user.admin=="true")&&(event.status=="Open")) { %>
+            <a href="<%=  '/events/createatt/'+ event.id %>"><button class="btn btn-success mt-5"> Add EventAttribut</button></a>
+            <%}%>
+    </div>
+   
+</div>
+
+</div>
+
+<%- include('../partials/footer.ejs') -%>
+<% } else { %>
+
+
+    <!DOCTYPE html>
+<html lang="de-DE" class="html_stretched responsive av-preloader-disabled av-default-lightbox  html_header_top html_logo_left html_main_nav_header html_menu_right html_slim html_header_sticky html_header_shrinking html_mobile_menu_tablet html_header_searchicon_disabled html_content_align_center html_header_unstick_top_disabled html_header_stretch_disabled html_minimal_header html_minimal_header_shadow html_av-overlay-full html_av-submenu-clone html_entry_id_539 av-cookies-no-cookie-consent av-no-preview html_text_menu_active ">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="index, follow" />
+
+
+<!-- mobile setting -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Scripts/CSS and wp_head hook -->
+<title>Pfa</title>
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="L-mobile Marathon &raquo; Feed" href="https://marathon.l-mobile.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="L-mobile Marathon &raquo; Kommentar-Feed" href="https://marathon.l-mobile.com/comments/feed/" />
+
+<!-- google webfont font replacement -->
+
+			<script type='text/javascript'>
+
+				(function() {
+					
+					/*	check if webfonts are disabled by user setting via cookie - or user must opt in.	*/
+					var html = document.getElementsByTagName('html')[0];
+					var cookie_check = html.className.indexOf('av-cookies-needs-opt-in') >= 0 || html.className.indexOf('av-cookies-can-opt-out') >= 0;
+					var allow_continue = true;
+					var silent_accept_cookie = html.className.indexOf('av-cookies-user-silent-accept') >= 0;
+
+					if( cookie_check && ! silent_accept_cookie )
+					{
+						if( ! document.cookie.match(/aviaCookieConsent/) || html.className.indexOf('av-cookies-session-refused') >= 0 )
+						{
+							allow_continue = false;
+						}
+						else
+						{
+							if( ! document.cookie.match(/aviaPrivacyRefuseCookiesHideBar/) )
+							{
+								allow_continue = false;
+							}
+							else if( ! document.cookie.match(/aviaPrivacyEssentialCookiesEnabled/) )
+							{
+								allow_continue = false;
+							}
+							else if( document.cookie.match(/aviaPrivacyGoogleWebfontsDisabled/) )
+							{
+								allow_continue = false;
+							}
+						}
+					}
+					
+					if( allow_continue )
+					{
+						var f = document.createElement('link');
+					
+						f.type 	= 'text/css';
+						f.rel 	= 'stylesheet';
+						f.href 	= '//fonts.googleapis.com/css?family=Open+Sans:400,600';
+						f.id 	= 'avia-google-webfont';
+
+						document.getElementsByTagName('head')[0].appendChild(f);
+					}
+				})();
+			
+			</script>
+					<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/marathon.l-mobile.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.6.2"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='avia-grid-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/css/grid.css?ver=4.7.6.4' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-base-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/css/base.css?ver=4.7.6.4' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-layout-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/css/layout.css?ver=4.7.6.4' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-blog-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/blog/blog.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-postslider-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/postslider/postslider.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-button-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/buttons/buttons.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-buttonrow-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/buttonrow/buttonrow.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-comments-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/comments/comments.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-gallery-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/gallery/gallery.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-gridrow-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/grid_row/grid_row.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-heading-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/heading/heading.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-hr-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/hr/hr.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-icon-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/icon/icon.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-iconbox-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/iconbox/iconbox.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-image-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/image/image.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-masonry-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/masonry_entries/masonry_entries.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-siteloader-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/css/avia-snippet-site-preloader.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-slideshow-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/slideshow/slideshow.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-slideshow-fullsize-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/slideshow_fullsize/slideshow_fullsize.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-social-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/social_share/social_share.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-table-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/table/table.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-tabs-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/tabs/tabs.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-toggles-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/toggles/toggles.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-module-video-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/video/video.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mec-select2-style-css'  href='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/select2/select2.min.css?ver=5.19.1' type='text/css' media='all' />
+<link rel='stylesheet' id='mec-font-icons-css'  href='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/css/iconfonts.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mec-frontend-style-css'  href='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/css/frontend.min.css?ver=5.19.1' type='text/css' media='all' />
+<link rel='stylesheet' id='mec-tooltip-style-css'  href='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/tooltip/tooltip.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mec-tooltip-shadow-style-css'  href='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/tooltip/tooltipster-sideTip-shadow.min.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='featherlight-css'  href='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/featherlight/featherlight.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mec-lity-style-css'  href='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/lity/lity.min.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://marathon.l-mobile.com/wp-includes/css/dist/block-library/style.min.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='imgareaselect-css'  href='https://marathon.l-mobile.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8' type='text/css' media='all' />
+<link rel='stylesheet' id='mec-ud-style-css'  href='https://marathon.l-mobile.com/wp-content/plugins/mec-user-dashboard/assets/css/mec-ud.css?ver=5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-scs-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/css/shortcodes.css?ver=4.7.6.4' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-popup-css-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/js/aviapopup/magnific-popup.css?ver=4.7.6.4' type='text/css' media='screen' />
+<link rel='stylesheet' id='avia-lightbox-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/css/avia-snippet-lightbox.css?ver=4.7.6.4' type='text/css' media='screen' />
+<link rel='stylesheet' id='avia-widget-css-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/css/avia-snippet-widget.css?ver=4.7.6.4' type='text/css' media='screen' />
+<link rel='stylesheet' id='avia-dynamic-css'  href='https://marathon.l-mobile.com/wp-content/uploads/dynamic_avia/enfold.css?ver=609bcb9262000' type='text/css' media='all' />
+<link rel='stylesheet' id='avia-custom-css'  href='https://marathon.l-mobile.com/wp-content/themes/enfold/css/custom.css?ver=4.7.6.4' type='text/css' media='all' />
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-includes/js/jquery/jquery.min.js?ver=3.5.1' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' id='mec-frontend-script-js-extra'>
+/* <![CDATA[ */
+var mecdata = {"day":"Tag","days":"Tage","hour":"Stunde","hours":"Stunden","minute":"Minute","minutes":"Minuten","second":"Sekunde","seconds":"Sekunden","elementor_edit_mode":"no","recapcha_key":"","ajax_url":"https:\/\/marathon.l-mobile.com\/wp-admin\/admin-ajax.php","fes_nonce":"aeb77e6b3a","current_year":"2021","current_month":"07","datepicker_format":"dd-mm-yy&d-m-Y"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/js/frontend.js?ver=5.19.1' id='mec-frontend-script-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/js/events.js?ver=5.19.1' id='mec-events-script-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/mec-user-dashboard/assets/js/mec-ud-chart.js?ver=5.6.2' id='mec-ud-chart-js'></script>
+<script type='text/javascript' id='mec-ud-script-js-extra'>
+/* <![CDATA[ */
+var mec_ud_config = {"upload_url":"https:\/\/marathon.l-mobile.com\/wp-admin\/async-upload.php","ajax_url":"https:\/\/marathon.l-mobile.com\/wp-admin\/admin-ajax.php","nonce":"fe1d8d05c2"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/mec-user-dashboard/assets/js/mec-ud.js?ver=5.6.2' id='mec-ud-script-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/js/avia-compat.js?ver=4.7.6.4' id='avia-compat-js'></script>
+<link rel="https://api.w.org/" href="https://marathon.l-mobile.com/wp-json/" /><link rel="alternate" type="application/json" href="https://marathon.l-mobile.com/wp-json/wp/v2/mec-events/539" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://marathon.l-mobile.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://marathon.l-mobile.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.6.2" />
+<link rel="canonical" href="https://marathon.l-mobile.com/events/monatlicher-lauf-2021/" />
+<link rel='shortlink' href='https://marathon.l-mobile.com/?p=539' />
+<link rel="alternate" type="application/json+oembed" href="https://marathon.l-mobile.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmarathon.l-mobile.com%2Fevents%2Fmonatlicher-lauf-2021%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://marathon.l-mobile.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmarathon.l-mobile.com%2Fevents%2Fmonatlicher-lauf-2021%2F&#038;format=xml" />
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="alternate" type="application/rss+xml" title="L-mobile Marathon RSS2 Feed" href="https://marathon.l-mobile.com/feed/" />
+<link rel="pingback" href="https://marathon.l-mobile.com/xmlrpc.php" />
+<!--[if lt IE 9]><script src="https://marathon.l-mobile.com/wp-content/themes/enfold/js/html5shiv.js"></script><![endif]-->
+<link rel="icon" href="https://www.l-mobile.app/wp-content/uploads/2020/10/favicon.png" type="image/png">
+<style type='text/css'>
+@font-face {font-family: 'entypo-fontello'; font-weight: normal; font-style: normal; font-display: auto;
+src: url('https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-template-builder/assets/fonts/entypo-fontello.woff2') format('woff2'),
+url('https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-template-builder/assets/fonts/entypo-fontello.woff') format('woff'),
+url('https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-template-builder/assets/fonts/entypo-fontello.ttf') format('truetype'), 
+url('https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-template-builder/assets/fonts/entypo-fontello.svg#entypo-fontello') format('svg'),
+url('https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-template-builder/assets/fonts/entypo-fontello.eot'),
+url('https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-template-builder/assets/fonts/entypo-fontello.eot?#iefix') format('embedded-opentype');
+} #top .avia-font-entypo-fontello, body .avia-font-entypo-fontello, html body [data-av_iconfont='entypo-fontello']:before{ font-family: 'entypo-fontello'; }
+
+@font-face {font-family: 'Flaticon'; font-weight: normal; font-style: normal; font-display: auto;
+src: url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/Flaticon/Flaticon.woff2') format('woff2'),
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/Flaticon/Flaticon.woff') format('woff'),
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/Flaticon/Flaticon.ttf') format('truetype'), 
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/Flaticon/Flaticon.svg#Flaticon') format('svg'),
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/Flaticon/Flaticon.eot'),
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/Flaticon/Flaticon.eot?#iefix') format('embedded-opentype');
+} #top .avia-font-Flaticon, body .avia-font-Flaticon, html body [data-av_iconfont='Flaticon']:before{ font-family: 'Flaticon'; }
+
+@font-face {font-family: 'flaticon'; font-weight: normal; font-style: normal; font-display: auto;
+src: url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/flaticon/flaticon.woff2') format('woff2'),
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/flaticon/flaticon.woff') format('woff'),
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/flaticon/flaticon.ttf') format('truetype'), 
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/flaticon/flaticon.svg#flaticon') format('svg'),
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/flaticon/flaticon.eot'),
+url('https://marathon.l-mobile.com/wp-content/uploads/avia_fonts/flaticon/flaticon.eot?#iefix') format('embedded-opentype');
+} #top .avia-font-flaticon, body .avia-font-flaticon, html body [data-av_iconfont='flaticon']:before{ font-family: 'flaticon'; }
+</style><style type="text/css">.mec-event-grid-minimal .mec-modal-booking-button:hover, .mec-events-timeline-wrap .mec-organizer-item a, .mec-events-timeline-wrap .mec-organizer-item:after, .mec-events-timeline-wrap .mec-shortcode-organizers i, .mec-timeline-event .mec-modal-booking-button, .mec-wrap .mec-map-lightbox-wp.mec-event-list-classic .mec-event-date, .mec-timetable-t2-col .mec-modal-booking-button:hover, .mec-event-container-classic .mec-modal-booking-button:hover, .mec-calendar-events-side .mec-modal-booking-button:hover, .mec-event-grid-yearly  .mec-modal-booking-button, .mec-events-agenda .mec-modal-booking-button, .mec-event-grid-simple .mec-modal-booking-button, .mec-event-list-minimal  .mec-modal-booking-button:hover, .mec-timeline-month-divider,  .mec-wrap.colorskin-custom .mec-totalcal-box .mec-totalcal-view span:hover,.mec-wrap.colorskin-custom .mec-calendar.mec-event-calendar-classic .mec-selected-day,.mec-wrap.colorskin-custom .mec-color, .mec-wrap.colorskin-custom .mec-event-sharing-wrap .mec-event-sharing > li:hover a, .mec-wrap.colorskin-custom .mec-color-hover:hover, .mec-wrap.colorskin-custom .mec-color-before *:before ,.mec-wrap.colorskin-custom .mec-widget .mec-event-grid-classic.owl-carousel .owl-nav i,.mec-wrap.colorskin-custom .mec-event-list-classic a.magicmore:hover,.mec-wrap.colorskin-custom .mec-event-grid-simple:hover .mec-event-title,.mec-wrap.colorskin-custom .mec-single-event .mec-event-meta dd.mec-events-event-categories:before,.mec-wrap.colorskin-custom .mec-single-event-date:before,.mec-wrap.colorskin-custom .mec-single-event-time:before,.mec-wrap.colorskin-custom .mec-events-meta-group.mec-events-meta-group-venue:before,.mec-wrap.colorskin-custom .mec-calendar .mec-calendar-side .mec-previous-month i,.mec-wrap.colorskin-custom .mec-calendar .mec-calendar-side .mec-next-month:hover,.mec-wrap.colorskin-custom .mec-calendar .mec-calendar-side .mec-previous-month:hover,.mec-wrap.colorskin-custom .mec-calendar .mec-calendar-side .mec-next-month:hover,.mec-wrap.colorskin-custom .mec-calendar.mec-event-calendar-classic dt.mec-selected-day:hover,.mec-wrap.colorskin-custom .mec-infowindow-wp h5 a:hover, .colorskin-custom .mec-events-meta-group-countdown .mec-end-counts h3,.mec-calendar .mec-calendar-side .mec-next-month i,.mec-wrap .mec-totalcal-box i,.mec-calendar .mec-event-article .mec-event-title a:hover,.mec-attendees-list-details .mec-attendee-profile-link a:hover,.mec-wrap.colorskin-custom .mec-next-event-details li i, .mec-next-event-details i:before, .mec-marker-infowindow-wp .mec-marker-infowindow-count, .mec-next-event-details a,.mec-wrap.colorskin-custom .mec-events-masonry-cats a.mec-masonry-cat-selected,.lity .mec-color,.lity .mec-color-before :before,.lity .mec-color-hover:hover,.lity .mec-wrap .mec-color,.lity .mec-wrap .mec-color-before :before,.lity .mec-wrap .mec-color-hover:hover,.leaflet-popup-content .mec-color,.leaflet-popup-content .mec-color-before :before,.leaflet-popup-content .mec-color-hover:hover,.leaflet-popup-content .mec-wrap .mec-color,.leaflet-popup-content .mec-wrap .mec-color-before :before,.leaflet-popup-content .mec-wrap .mec-color-hover:hover, .mec-calendar.mec-calendar-daily .mec-calendar-d-table .mec-daily-view-day.mec-daily-view-day-active.mec-color, .mec-map-boxshow div .mec-map-view-event-detail.mec-event-detail i,.mec-map-boxshow div .mec-map-view-event-detail.mec-event-detail:hover,.mec-map-boxshow .mec-color,.mec-map-boxshow .mec-color-before :before,.mec-map-boxshow .mec-color-hover:hover,.mec-map-boxshow .mec-wrap .mec-color,.mec-map-boxshow .mec-wrap .mec-color-before :before,.mec-map-boxshow .mec-wrap .mec-color-hover:hover, .mec-choosen-time-message, .mec-booking-calendar-month-navigation .mec-next-month:hover, .mec-booking-calendar-month-navigation .mec-previous-month:hover, .mec-yearly-view-wrap .mec-agenda-event-title a:hover, .mec-yearly-view-wrap .mec-yearly-title-sec .mec-next-year i, .mec-yearly-view-wrap .mec-yearly-title-sec .mec-previous-year i, .mec-yearly-view-wrap .mec-yearly-title-sec .mec-next-year:hover, .mec-yearly-view-wrap .mec-yearly-title-sec .mec-previous-year:hover, .mec-av-spot .mec-av-spot-head .mec-av-spot-box span, .mec-wrap.colorskin-custom .mec-calendar .mec-calendar-side .mec-previous-month:hover .mec-load-month-link, .mec-wrap.colorskin-custom .mec-calendar .mec-calendar-side .mec-next-month:hover .mec-load-month-link, .mec-yearly-view-wrap .mec-yearly-title-sec .mec-previous-year:hover .mec-load-month-link, .mec-yearly-view-wrap .mec-yearly-title-sec .mec-next-year:hover .mec-load-month-link{color: #009acd}.mec-skin-carousel-container .mec-event-footer-carousel-type3 .mec-modal-booking-button:hover, .mec-wrap.colorskin-custom .mec-event-sharing .mec-event-share:hover .event-sharing-icon,.mec-wrap.colorskin-custom .mec-event-grid-clean .mec-event-date,.mec-wrap.colorskin-custom .mec-event-list-modern .mec-event-sharing > li:hover a i,.mec-wrap.colorskin-custom .mec-event-list-modern .mec-event-sharing .mec-event-share:hover .mec-event-sharing-icon,.mec-wrap.colorskin-custom .mec-event-list-modern .mec-event-sharing li:hover a i,.mec-wrap.colorskin-custom .mec-calendar:not(.mec-event-calendar-classic) .mec-selected-day,.mec-wrap.colorskin-custom .mec-calendar .mec-selected-day:hover,.mec-wrap.colorskin-custom .mec-calendar .mec-calendar-row  dt.mec-has-event:hover,.mec-wrap.colorskin-custom .mec-calendar .mec-has-event:after, .mec-wrap.colorskin-custom .mec-bg-color, .mec-wrap.colorskin-custom .mec-bg-color-hover:hover, .colorskin-custom .mec-event-sharing-wrap:hover > li, .mec-wrap.colorskin-custom .mec-totalcal-box .mec-totalcal-view span.mec-totalcalview-selected,.mec-wrap .flip-clock-wrapper ul li a div div.inn,.mec-wrap .mec-totalcal-box .mec-totalcal-view span.mec-totalcalview-selected,.event-carousel-type1-head .mec-event-date-carousel,.mec-event-countdown-style3 .mec-event-date,#wrap .mec-wrap article.mec-event-countdown-style1,.mec-event-countdown-style1 .mec-event-countdown-part3 a.mec-event-button,.mec-wrap .mec-event-countdown-style2,.mec-map-get-direction-btn-cnt input[type="submit"],.mec-booking button,span.mec-marker-wrap,.mec-wrap.colorskin-custom .mec-timeline-events-container .mec-timeline-event-date:before, .mec-has-event-for-booking.mec-active .mec-calendar-novel-selected-day, .mec-booking-tooltip.multiple-time .mec-booking-calendar-date.mec-active, .mec-booking-tooltip.multiple-time .mec-booking-calendar-date:hover, .mec-ongoing-normal-label, .mec-calendar .mec-has-event:after{background-color: #009acd;}.mec-booking-tooltip.multiple-time .mec-booking-calendar-date:hover, .mec-calendar-day.mec-active .mec-booking-tooltip.multiple-time .mec-booking-calendar-date.mec-active{ background-color: #009acd;}.mec-skin-carousel-container .mec-event-footer-carousel-type3 .mec-modal-booking-button:hover, .mec-timeline-month-divider, .mec-wrap.colorskin-custom .mec-single-event .mec-speakers-details ul li .mec-speaker-avatar a:hover img,.mec-wrap.colorskin-custom .mec-event-list-modern .mec-event-sharing > li:hover a i,.mec-wrap.colorskin-custom .mec-event-list-modern .mec-event-sharing .mec-event-share:hover .mec-event-sharing-icon,.mec-wrap.colorskin-custom .mec-event-list-standard .mec-month-divider span:before,.mec-wrap.colorskin-custom .mec-single-event .mec-social-single:before,.mec-wrap.colorskin-custom .mec-single-event .mec-frontbox-title:before,.mec-wrap.colorskin-custom .mec-calendar .mec-calendar-events-side .mec-table-side-day, .mec-wrap.colorskin-custom .mec-border-color, .mec-wrap.colorskin-custom .mec-border-color-hover:hover, .colorskin-custom .mec-single-event .mec-frontbox-title:before, .colorskin-custom .mec-single-event .mec-events-meta-group-booking form > h4:before, .mec-wrap.colorskin-custom .mec-totalcal-box .mec-totalcal-view span.mec-totalcalview-selected,.mec-wrap .mec-totalcal-box .mec-totalcal-view span.mec-totalcalview-selected,.event-carousel-type1-head .mec-event-date-carousel:after,.mec-wrap.colorskin-custom .mec-events-masonry-cats a.mec-masonry-cat-selected, .mec-marker-infowindow-wp .mec-marker-infowindow-count, .mec-wrap.colorskin-custom .mec-events-masonry-cats a:hover, .mec-has-event-for-booking .mec-calendar-novel-selected-day, .mec-booking-tooltip.multiple-time .mec-booking-calendar-date.mec-active, .mec-booking-tooltip.multiple-time .mec-booking-calendar-date:hover, .mec-virtual-event-history h3:before, .mec-booking-tooltip.multiple-time .mec-booking-calendar-date:hover, .mec-calendar-day.mec-active .mec-booking-tooltip.multiple-time .mec-booking-calendar-date.mec-active{border-color: #009acd;}.mec-wrap.colorskin-custom .mec-event-countdown-style3 .mec-event-date:after,.mec-wrap.colorskin-custom .mec-month-divider span:before, .mec-calendar.mec-event-container-simple dl dt.mec-selected-day, .mec-calendar.mec-event-container-simple dl dt.mec-selected-day:hover{border-bottom-color:#009acd;}.mec-wrap.colorskin-custom  article.mec-event-countdown-style1 .mec-event-countdown-part2:after{border-color: transparent transparent transparent #009acd;}.mec-wrap.colorskin-custom .mec-box-shadow-color { box-shadow: 0 4px 22px -7px #009acd;}.mec-events-timeline-wrap .mec-shortcode-organizers, .mec-timeline-event .mec-modal-booking-button, .mec-events-timeline-wrap:before, .mec-wrap.colorskin-custom .mec-timeline-event-local-time, .mec-wrap.colorskin-custom .mec-timeline-event-time ,.mec-wrap.colorskin-custom .mec-timeline-event-location,.mec-choosen-time-message { background: rgba(0,154,205,.11);}.mec-wrap.colorskin-custom .mec-timeline-events-container .mec-timeline-event-date:after { background: rgba(0,154,205,.3);}</style>
+
+<!--
+Debugging Info for Theme support: 
+
+Theme: Enfold
+Version: 4.7.6.4
+Installed: enfold
+AviaFramework Version: 5.0
+AviaBuilder Version: 4.7.6.4
+aviaElementManager Version: 1.0.1
+ML:128-PU:20-PLA:5
+WP:5.6.2
+Compress: CSS:disabled - JS:disabled
+Updates: enabled - token has changed and not verified
+PLAu:4
+-->
+</head>
+
+
+
+
+<body id="top" class="mec-events-template-default single single-mec-events postid-539  rtl_columns stretched open_sans" itemscope="itemscope" itemtype="https://schema.org/WebPage" >
+
+	
+	<div id='wrap_all'>
+
+	
+<header id='header' class='all_colors header_color light_bg_color  av_header_top av_logo_left av_main_nav_header av_menu_right av_slim av_header_sticky av_header_shrinking av_header_stretch_disabled av_mobile_menu_tablet av_header_searchicon_disabled av_header_unstick_top_disabled av_minimal_header av_minimal_header_shadow av_bottom_nav_disabled  av_alternate_logo_active av_header_border_disabled'  role="banner" itemscope="itemscope" itemtype="https://schema.org/WPHeader" >
+
+		<div  id='header_main' class='container_wrap container_wrap_logo'>
+	
+        <div class='container av-logo-container'><div class='inner-container'><span class='logo'><a href='/events'><img height="100" width="300" src='https://www.l-mobile.app/wp-content/uploads/2020/10/L-mobile_Web-300x212.png' alt='L-mobile Marathon' title='' /></a></span><nav class='main_menu' data-selectname='Wähle eine Seite'  role="navigation" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement" ><div class="avia-menu av-main-nav-wrap av_menu_icon_beside"><ul id="avia-menu" class="menu av-main-nav"><li id="menu-item-338" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-top-level menu-item-top-level-1"><a href="/events" itemprop="url"><span class="avia-bullet"></span><span class="avia-menu-text">L-mobile Marathon</span><span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span></a></li>
+<li id="menu-item-334" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-top-level menu-item-top-level-2"><a  itemprop="url"><span class="avia-bullet"></span><span class="avia-menu-text"></span><span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span></a></li>
+<li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-top-level menu-item-top-level-3"><a itemprop="url"><span class="avia-bullet"></span><span class="avia-menu-text"></span><span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span></a></li>
+<li id="menu-item-405" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-mega-parent  menu-item-top-level menu-item-top-level-4"><a  itemprop="url"><span class="avia-bullet"></span><span class="avia-menu-text"></span><span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span></a></li>
+<li id="menu-item-626" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-mega-parent  menu-item-top-level menu-item-top-level-5"><a itemprop="url"><span class="avia-bullet"></span><span class="avia-menu-text"></span><span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span></a></li>
+<li id="menu-item-239" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home av-menu-button av-menu-button-bordered menu-item-top-level menu-item-top-level-6"><a href="" itemprop="url"><span class="avia-bullet"></span><span class="avia-menu-text">App Download</span><span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span></a></li>
+<% if (!user) { %>
+	<li id="menu-item-526" class="menu-item menu-item-type-custom menu-item-object-custom av-menu-button av-menu-button-bordered menu-item-top-level menu-item-top-level-7"><a href="/participants/signup" itemprop="url"><span class="avia-bullet"></span><span class="avia-menu-text">Anmeldung</span><span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span></a></li>
+	<% } else { %>
+		<li id="menu-item-526" class="menu-item menu-item-type-custom menu-item-object-custom av-menu-button av-menu-button-bordered menu-item-top-level menu-item-top-level-7"><a href="/participants/logout" itemprop="url"><span class="avia-bullet"></span><span class="avia-menu-text">Abmeldung</span><span class="avia-menu-fx"><span class="avia-arrow-wrap"><span class="avia-arrow"></span></span></span></a></li>
+		<%}  %>
+<li class="av-burger-menu-main menu-item-avia-special av-small-burger-icon">
+	        			<a href="#" aria-label="Menü" aria-hidden="false">
+							<span class="av-hamburger av-hamburger--spin av-js-hamburger">
+								<span class="av-hamburger-box">
+						          <span class="av-hamburger-inner"></span>
+						          <strong>Menü</strong>
+								</span>
+							</span>
+							<span class="avia_hidden_link_text">Menü</span>
+						</a>
+	        		   </li></ul></div><ul class='noLightbox social_bookmarks icon_count_2'></ul></nav></div> </div> 
+		<!-- end container_wrap-->
+		</div>
+		<div class='header_bg'></div>
+
+<!-- end header -->
+</header>
+		
+	<div id='main' class='all_colors' data-scroll-offset='88'>
+
+	
+    <section id="main-content" class="mec-container">
+
+        
+        
+            <div class="mec-wrap colorskin-custom clearfix " id="mec_skin_5854">
+		<article class="row mec-single-event">
+
+		<!-- start breadcrumbs -->
+				<!-- end breadcrumbs -->
+
+		<div class="col-md-8">
+			<div class="mec-events-event-image"><img width="1000" height="667" src="https://marathon.l-mobile.com/wp-content/uploads/2021/04/l-mobile_marathon_standort.jpg" class="wp-image-416 avia-img-lazy-loading-416 attachment-full size-full wp-post-image" alt="" loading="lazy" data-mec-postid="539" srcset="https://marathon.l-mobile.com/wp-content/uploads/2021/04/l-mobile_marathon_standort.jpg 1000w, https://marathon.l-mobile.com/wp-content/uploads/2021/04/l-mobile_marathon_standort-300x200.jpg 300w, https://marathon.l-mobile.com/wp-content/uploads/2021/04/l-mobile_marathon_standort-768x512.jpg 768w, https://marathon.l-mobile.com/wp-content/uploads/2021/04/l-mobile_marathon_standort-705x470.jpg 705w" sizes="(max-width: 1000px) 100vw, 1000px" /></div>
+			<div class="mec-event-content">
+								<h1 class="mec-single-title"><%=event.name%></h1>
+				<div class="mec-single-event-description mec-events-content"><p><%=event.remarque%></p>
+<p><strong>Teilnehmer Juni (<%=event.startdate.toDateString()%>-<%= event.enddate.toDateString()%>):</strong></p>
+<ul>
+	<% chunkall.forEach((HayaM3anaall)=> {%>
+		<% HayaM3anaall.forEach((eventatt)=> {%>
+	  <li><a href="<%=  '/events/showatt/'  + eventatt.id %>"><h4 style="font-family:'diot'; color: #17A2B4;" ><img src="https://img.icons8.com/material-outlined/24/000000/tear-off-calendar.png"/> <%=eventatt.type %></h4></a></li>
+	  <%})%>
+	  <%})%>
+</ul>
+<p>&nbsp;</p>
+<p><strong></strong></p>
+</div>
+			</div>
+
+			
+			<!-- Custom Data Fields -->
+			
+			<div class="mec-event-info-mobile"></div>
+
+			<!-- Export Module -->
+			<div class="mec-event-export-module mec-frontbox">
+     <div class="mec-event-exporting">
+        <div class="mec-export-details">
+            <ul>
+                <li><a class="mec-events-gcal mec-events-button mec-color mec-bg-color-hover mec-border-color" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Monatlicher+Lauf+2021&dates=20210101T080000Z/20211231T180000Z&details=Unser+Lauf+des+Monats%21+Laufe+den+ganzen+Monat+lang%2C+wann+immer+du+m%C3%B6chtest.%0D%0A%0D%0ATeilnehmer+Juni+%2801.06.2021-30.06.2021%29%3A%0D%0A%0D%0A+%09G%C3%BCnter+L%C3%B6chner+%28Marathon+-+6%3A32%29%0D%0A+%09Monika+Widmann+%28Marathon+-+abgebrochen+-+Halbmarathon+-+3%3A45%29%0D%0A+%09Pascal+L%C3%B6chner+%28Marathon+-+abgebrochen+%29%0D%0A%0D%0A%26nbsp%3B%0D%0A%0D%0ATeilnehmer+Juli+%2801.07.2021-31.07.2021%29%3A&location=L-mobile+solutions+GmbH+%26+Co.+KG%2C+Im+Horben+7%2C+71560+Sulzbach+%2F+Murr" target="_blank">+ zum Google Calendar hinzufügen</a></li>                <li><a class="mec-events-gcal mec-events-button mec-color mec-bg-color-hover mec-border-color" href="https://marathon.l-mobile.com/?method=ical&id=539">+ iCal / Outlook export</a></li>            </ul>
+        </div>
+    </div>
+</div>
+			<!-- Countdown module -->
+			
+			<!-- Hourly Schedule -->
+			
+			<!-- Booking Module -->
+			
+			<!-- Tags -->
+			<div class="mec-events-meta-group mec-events-meta-group-tags">
+                			</div>
+
+		</div>
+
+					<div class="col-md-4">
+
+				<div class="mec-event-info-desktop mec-event-meta mec-color-before mec-frontbox">
+											<div class="mec-single-event-date">
+							
+							<h3 class="mec-date">Datum</h3>
+							<dl>
+																	<dd><abbr class="mec-events-abbr"><span class="mec-start-date-label" itemprop="startDate"><%=event.startdate.toDateString()%></span><span class="mec-end-date-label" itemprop="endDate"> - <%=event.enddate.toDateString()%></span></abbr></dd>
+															</dl>
+							<dl><dd><span class="mec-holding-status mec-holding-status-ongoing"><%=event.status%></span></dd></dl>						</div>
+
+						
+					<!-- Local Time Module -->
+					
+					
+										
+					
+					
+
+											<div class="mec-single-event-location">
+															<img class="mec-img-location" src="https://marathon.l-mobile.com/wp-content/uploads/2021/04/l-mobile_marathon_standort.jpg" alt="L-mobile Hauptsitz">
+														
+							<h3 class="mec-events-single-section-title mec-location">Ort</h3>
+							<dl>
+							<dd class="author fn org">L-mobile Hauptsitz</dd>
+							<dd class="location"><address class="mec-events-address"><span class="mec-address">L-mobile solutions GmbH & Co. KG, Im Horben 7, 71560 Sulzbach / Murr</span></address></dd>
+
+															<dd class="mec-location-url">
+								
+									<h6>Website</h6>
+									<span><a href="https://marathon.l-mobile.com/" class="mec-color-hover" target="_blank">https://marathon.l-mobile.com/</a></span>
+								</dd>
+														</dl>
+						</div>
+						
+																					<div class="mec-single-event-organizer">
+														<h3 class="mec-events-single-section-title">Veranstalter</h3>
+							<dl>
+															<dd class="mec-organizer">
+									
+									<h6>L-mobile</h6>
+								</dd>
+														</dl>
+						</div>
+						
+					<!-- Register Booking Button -->
+					
+				</div>
+
+				<!-- Speakers Module -->
+				
+				<!-- Attendees List Module -->
+				
+				<!-- Next Previous Module -->
+				
+				<!-- Links Module -->
+				
+				<!-- Weather Module -->
+				
+				<!-- Google Maps Module -->
+				<div class="mec-events-meta-group mec-events-meta-group-gmap">
+									</div>
+
+				<!-- QRCode Module -->
+				
+				<!-- Widgets -->
+				
+			</div>
+			</article>
+
+		
+</div>
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Event",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "startDate": "2021-01-01",
+            "endDate": "2021-12-31",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location":
+            {
+                "@type": "Place",
+                                "name": "L-mobile Hauptsitz",
+                "image": "https://marathon.l-mobile.com/wp-content/uploads/2021/04/l-mobile_marathon_standort.jpg",
+                "address": "L-mobile solutions GmbH & Co. KG, Im Horben 7, 71560 Sulzbach / Murr"
+                            },
+            "organizer":
+            {
+                "@type": "Person",
+                "name": "L-mobile",
+                "url": ""
+            },
+            "offers":
+            {
+                "url": "https://marathon.l-mobile.com/events/monatlicher-lauf-2021/",
+                "price": "",
+                "priceCurrency": "€",
+                "availability": "https://schema.org/InStock",
+                "validFrom": "2021-01-01T00:00"
+            },
+            "performer": "",
+            "description": "Unser Lauf des Monats! Laufe den ganzen Monat lang, wann immer du möchtest.    &lt;strong&gt;Teilnehmer Juni (01.06.2021-30.06.2021):&lt;/strong&gt;  &lt;ul&gt;    &lt;li&gt;Günter Löchner (Marathon - 6:32)&lt;/li&gt;    &lt;li&gt;Monika Widmann (Marathon - abgebrochen - Halbmarathon - 3:45)&lt;/li&gt;    &lt;li&gt;Pascal Löchner (Marathon - abgebrochen )&lt;/li&gt;  &lt;/ul&gt;  &nbsp;    &lt;strong&gt;Teilnehmer Juli (01.07.2021-31.07.2021):&lt;/strong&gt;",
+            "image": "https://marathon.l-mobile.com/wp-content/uploads/2021/04/l-mobile_marathon_standort.jpg",
+            "name": "Monatlicher Lauf 2021",
+            "url": "https://marathon.l-mobile.com/events/monatlicher-lauf-2021/"
+        }
+        </script>
+        <script>
+    // Fix modal speaker in some themes
+    jQuery(".mec-speaker-avatar a").click(function(e)
+    {
+        e.preventDefault();
+        var id =  jQuery(this).attr('href');
+        lity(id);
+    });
+
+    // Fix modal booking in some themes
+    jQuery(window).on('load', function()
+    {
+        jQuery( ".mec-booking-button.mec-booking-data-lity" ).click(function(e)
+        {
+            e.preventDefault();
+            var book_id =  jQuery(this).attr('href');
+            lity(book_id);
+        });
+    });
+</script>
+                
+
+
+	        	
+	        	
+<div class='comment-entry post-entry'>
+
+
+</div>    </section>
+
+    
+		
+
+	
+				<footer class='container_wrap socket_color' id='socket'  role="contentinfo" itemscope="itemscope" itemtype="https://schema.org/WPFooter" >
+                    <div class='container'>
+
+                        <span class='copyright'>© Copyright - L-mobile Marathon | <a href="https://www.l-mobile.com/impressum/">Impressum</a> | <a href="https://www.l-mobile.com/datenschutzerklaerung/">Datenschutzerklärung</a></span>
+
+                        <ul class='noLightbox social_bookmarks icon_count_2'></ul>
+                    </div>
+
+	            <!-- ####### END SOCKET CONTAINER ####### -->
+				</footer>
+
+
+					<!-- end main -->
+		</div>
+		
+		<!-- end wrap_all --></div>
+
+<a href='#top' title='Nach oben scrollen' id='scroll-top-link' aria-hidden='true' data-av_iconfont='entypo-fontello'><span class="avia_hidden_link_text">Nach oben scrollen</span></a>
+
+<div id="fb-root"></div>
+
+
+ <script type='text/javascript'>
+ /* <![CDATA[ */  
+var avia_framework_globals = avia_framework_globals || {};
+    avia_framework_globals.frameworkUrl = 'https://marathon.l-mobile.com/wp-content/themes/enfold/framework/';
+    avia_framework_globals.installedAt = 'https://marathon.l-mobile.com/wp-content/themes/enfold/';
+    avia_framework_globals.ajaxurl = 'https://marathon.l-mobile.com/wp-admin/admin-ajax.php';
+/* ]]> */ 
+</script>
+ 
+ 
+		<script type="text/html" id="tmpl-media-frame">
+		<div class="media-frame-title" id="media-frame-title"></div>
+		<h2 class="media-frame-menu-heading">Aktionen</h2>
+		<button type="button" class="button button-link media-frame-menu-toggle" aria-expanded="false">
+			Menü			<span class="dashicons dashicons-arrow-down" aria-hidden="true"></span>
+		</button>
+		<div class="media-frame-menu"></div>
+		<div class="media-frame-tab-panel">
+			<div class="media-frame-router"></div>
+			<div class="media-frame-content"></div>
+		</div>
+		<h2 class="media-frame-actions-heading screen-reader-text">
+		Ausgewählte Medien-Aktionen		</h2>
+		<div class="media-frame-toolbar"></div>
+		<div class="media-frame-uploader"></div>
+	</script>
+
+		<script type="text/html" id="tmpl-media-modal">
+		<div tabindex="0" class="media-modal wp-core-ui" role="dialog" aria-labelledby="media-frame-title">
+			<# if ( data.hasCloseButton ) { #>
+				<button type="button" class="media-modal-close"><span class="media-modal-icon"><span class="screen-reader-text">Dialog schließen</span></span></button>
+			<# } #>
+			<div class="media-modal-content" role="document"></div>
+		</div>
+		<div class="media-modal-backdrop"></div>
+	</script>
+
+		<script type="text/html" id="tmpl-uploader-window">
+		<div class="uploader-window-content">
+			<div class="uploader-editor-title">Dateien für den Upload bereitstellen</div>
+		</div>
+	</script>
+
+		<script type="text/html" id="tmpl-uploader-editor">
+		<div class="uploader-editor-content">
+			<div class="uploader-editor-title">Dateien für den Upload bereitstellen</div>
+		</div>
+	</script>
+
+		<script type="text/html" id="tmpl-uploader-inline">
+		<# var messageClass = data.message ? 'has-upload-message' : 'no-upload-message'; #>
+		<# if ( data.canClose ) { #>
+		<button class="close dashicons dashicons-no"><span class="screen-reader-text">Bedienfeld zum Hochladen schließen</span></button>
+		<# } #>
+		<div class="uploader-inline-content {{ messageClass }}">
+		<# if ( data.message ) { #>
+			<h2 class="upload-message">{{ data.message }}</h2>
+		<# } #>
+					<div class="upload-ui">
+				<h2 class="upload-instructions drop-instructions">Dateien für den Upload bereitstellen</h2>
+				<p class="upload-instructions drop-instructions">oder</p>
+				<button type="button" class="browser button button-hero">Dateien auswählen</button>
+			</div>
+
+			<div class="upload-inline-status"></div>
+
+			<div class="post-upload-ui">
+				
+				<p class="max-upload-size">
+				Maximale Dateigröße für Uploads: 2 MB.				</p>
+
+				<# if ( data.suggestedWidth && data.suggestedHeight ) { #>
+					<p class="suggested-dimensions">
+						Vorgeschlagene Bildmaße: {{data.suggestedWidth}} auf {{data.suggestedHeight}} Pixel.					</p>
+				<# } #>
+
+							</div>
+				</div>
+	</script>
+
+		<script type="text/html" id="tmpl-media-library-view-switcher">
+		<a href="https://marathon.l-mobile.com/wp-admin/upload.php?mode=list" class="view-list">
+			<span class="screen-reader-text">Listenansicht</span>
+		</a>
+		<a href="https://marathon.l-mobile.com/wp-admin/upload.php?mode=grid" class="view-grid current" aria-current="page">
+			<span class="screen-reader-text">Rasteransicht</span>
+		</a>
+	</script>
+
+		<script type="text/html" id="tmpl-uploader-status">
+		<h2>Hochladen</h2>
+		<button type="button" class="button-link upload-dismiss-errors"><span class="screen-reader-text">Fehler ausblenden</span></button>
+
+		<div class="media-progress-bar"><div></div></div>
+		<div class="upload-details">
+			<span class="upload-count">
+				<span class="upload-index"></span> / <span class="upload-total"></span>
+			</span>
+			<span class="upload-detail-separator">&ndash;</span>
+			<span class="upload-filename"></span>
+		</div>
+		<div class="upload-errors"></div>
+	</script>
+
+		<script type="text/html" id="tmpl-uploader-status-error">
+		<span class="upload-error-filename">{{{ data.filename }}}</span>
+		<span class="upload-error-message">{{ data.message }}</span>
+	</script>
+
+		<script type="text/html" id="tmpl-edit-attachment-frame">
+		<div class="edit-media-header">
+			<button class="left dashicons"<# if ( ! data.hasPrevious ) { #> disabled<# } #>><span class="screen-reader-text">Vorheriges Medienelement bearbeiten</span></button>
+			<button class="right dashicons"<# if ( ! data.hasNext ) { #> disabled<# } #>><span class="screen-reader-text">Nächstes Medienelement bearbeiten</span></button>
+			<button type="button" class="media-modal-close"><span class="media-modal-icon"><span class="screen-reader-text">Dialog schließen</span></span></button>
+		</div>
+		<div class="media-frame-title"></div>
+		<div class="media-frame-content"></div>
+	</script>
+
+		<script type="text/html" id="tmpl-attachment-details-two-column">
+		<div class="attachment-media-view {{ data.orientation }}">
+			<h2 class="screen-reader-text">Vorschau des Anhangs</h2>
+			<div class="thumbnail thumbnail-{{ data.type }}">
+				<# if ( data.uploading ) { #>
+					<div class="media-progress-bar"><div></div></div>
+				<# } else if ( data.sizes && data.sizes.large ) { #>
+					<img class="details-image" src="{{ data.sizes.large.url }}" draggable="false" alt="" />
+				<# } else if ( data.sizes && data.sizes.full ) { #>
+					<img class="details-image" src="{{ data.sizes.full.url }}" draggable="false" alt="" />
+				<# } else if ( -1 === jQuery.inArray( data.type, [ 'audio', 'video' ] ) ) { #>
+					<img class="details-image icon" src="{{ data.icon }}" draggable="false" alt="" />
+				<# } #>
+
+				<# if ( 'audio' === data.type ) { #>
+				<div class="wp-media-wrapper wp-audio">
+					<audio style="visibility: hidden" controls class="wp-audio-shortcode" width="100%" preload="none">
+						<source type="{{ data.mime }}" src="{{ data.url }}"/>
+					</audio>
+				</div>
+				<# } else if ( 'video' === data.type ) {
+					var w_rule = '';
+					if ( data.width ) {
+						w_rule = 'width: ' + data.width + 'px;';
+					} else if ( wp.media.view.settings.contentWidth ) {
+						w_rule = 'width: ' + wp.media.view.settings.contentWidth + 'px;';
+					}
+				#>
+				<div  class="wp-media-wrapper wp-video">
+					<video controls="controls" class="wp-video-shortcode" preload="metadata"
+						<# if ( data.width ) { #>width="{{ data.width }}"<# } #>
+						<# if ( data.height ) { #>height="{{ data.height }}"<# } #>
+						<# if ( data.image && data.image.src !== data.icon ) { #>poster="{{ data.image.src }}"<# } #>>
+						<source type="{{ data.mime }}" src="{{ data.url }}"/>
+					</video>
+				</div>
+				<# } #>
+
+				<div class="attachment-actions">
+					<# if ( 'image' === data.type && ! data.uploading && data.sizes && data.can.save ) { #>
+					<button type="button" class="button edit-attachment">Bild bearbeiten</button>
+					<# } else if ( 'pdf' === data.subtype && data.sizes ) { #>
+					<p>Dokument-Vorschau</p>
+					<# } #>
+				</div>
+			</div>
+		</div>
+		<div class="attachment-info">
+			<span class="settings-save-status" role="status">
+				<span class="spinner"></span>
+				<span class="saved">Gespeichert.</span>
+			</span>
+			<div class="details">
+				<h2 class="screen-reader-text">Details</h2>
+				<div class="uploaded"><strong>Hochgeladen am:</strong> {{ data.dateFormatted }}</div>
+				<div class="uploaded-by">
+					<strong>Hochgeladen von:</strong>
+						<# if ( data.authorLink ) { #>
+							<a href="{{ data.authorLink }}">{{ data.authorName }}</a>
+						<# } else { #>
+							{{ data.authorName }}
+						<# } #>
+				</div>
+				<# if ( data.uploadedToTitle ) { #>
+					<div class="uploaded-to">
+						<strong>Hochgeladen zu:</strong>
+						<# if ( data.uploadedToLink ) { #>
+							<a href="{{ data.uploadedToLink }}">{{ data.uploadedToTitle }}</a>
+						<# } else { #>
+							{{ data.uploadedToTitle }}
+						<# } #>
+					</div>
+				<# } #>
+				<div class="filename"><strong>Dateiname:</strong> {{ data.filename }}</div>
+				<div class="file-type"><strong>Dateityp:</strong> {{ data.mime }}</div>
+				<div class="file-size"><strong>Dateigröße:</strong> {{ data.filesizeHumanReadable }}</div>
+				<# if ( 'image' === data.type && ! data.uploading ) { #>
+					<# if ( data.width && data.height ) { #>
+						<div class="dimensions"><strong>Abmessungen:</strong>
+							{{ data.width }} auf {{ data.height }} Pixel						</div>
+					<# } #>
+
+					<# if ( data.originalImageURL && data.originalImageName ) { #>
+						Originalbild:						<a href="{{ data.originalImageURL }}">{{data.originalImageName}}</a>
+					<# } #>
+				<# } #>
+
+				<# if ( data.fileLength && data.fileLengthHumanReadable ) { #>
+					<div class="file-length"><strong>Länge:</strong>
+						<span aria-hidden="true">{{ data.fileLength }}</span>
+						<span class="screen-reader-text">{{ data.fileLengthHumanReadable }}</span>
+					</div>
+				<# } #>
+
+				<# if ( 'audio' === data.type && data.meta.bitrate ) { #>
+					<div class="bitrate">
+						<strong>Bitrate:</strong> {{ Math.round( data.meta.bitrate / 1000 ) }}kb/s
+						<# if ( data.meta.bitrate_mode ) { #>
+						{{ ' ' + data.meta.bitrate_mode.toUpperCase() }}
+						<# } #>
+					</div>
+				<# } #>
+
+				<# if ( data.mediaStates ) { #>
+					<div class="media-states"><strong>Verwendet als:</strong> {{ data.mediaStates }}</div>
+				<# } #>
+
+				<div class="compat-meta">
+					<# if ( data.compat && data.compat.meta ) { #>
+						{{{ data.compat.meta }}}
+					<# } #>
+				</div>
+			</div>
+
+			<div class="settings">
+				<# var maybeReadOnly = data.can.save || data.allowLocalEdits ? '' : 'readonly'; #>
+				<# if ( 'image' === data.type ) { #>
+					<span class="setting has-description" data-setting="alt">
+						<label for="attachment-details-two-column-alt-text" class="name">Alternativer Text</label>
+						<input type="text" id="attachment-details-two-column-alt-text" value="{{ data.alt }}" aria-describedby="alt-text-description" {{ maybeReadOnly }} />
+					</span>
+					<p class="description" id="alt-text-description"><a href="https://www.w3.org/WAI/tutorials/images/decision-tree" target="_blank" rel="noopener">Beschreibe den Zweck des Bildes<span class="screen-reader-text"> (öffnet in neuem Tab)</span></a>. Leer lassen, wenn das Bild nur als dekoratives Element dient.</p>
+				<# } #>
+								<span class="setting" data-setting="title">
+					<label for="attachment-details-two-column-title" class="name">Titel</label>
+					<input type="text" id="attachment-details-two-column-title" value="{{ data.title }}" {{ maybeReadOnly }} />
+				</span>
+								<# if ( 'audio' === data.type ) { #>
+								<span class="setting" data-setting="artist">
+					<label for="attachment-details-two-column-artist" class="name">Künstler</label>
+					<input type="text" id="attachment-details-two-column-artist" value="{{ data.artist || data.meta.artist || '' }}" />
+				</span>
+								<span class="setting" data-setting="album">
+					<label for="attachment-details-two-column-album" class="name">Album</label>
+					<input type="text" id="attachment-details-two-column-album" value="{{ data.album || data.meta.album || '' }}" />
+				</span>
+								<# } #>
+				<span class="setting" data-setting="caption">
+					<label for="attachment-details-two-column-caption" class="name">Beschriftung</label>
+					<textarea id="attachment-details-two-column-caption" {{ maybeReadOnly }}>{{ data.caption }}</textarea>
+				</span>
+				<span class="setting" data-setting="description">
+					<label for="attachment-details-two-column-description" class="name">Beschreibung</label>
+					<textarea id="attachment-details-two-column-description" {{ maybeReadOnly }}>{{ data.description }}</textarea>
+				</span>
+				<span class="setting" data-setting="url">
+					<label for="attachment-details-two-column-copy-link" class="name">Datei-URL:</label>
+					<input type="text" class="attachment-details-copy-link" id="attachment-details-two-column-copy-link" value="{{ data.url }}" readonly />
+					<span class="copy-to-clipboard-container">
+						<button type="button" class="button button-small copy-attachment-url" data-clipboard-target="#attachment-details-two-column-copy-link">URL in die Zwischenablage kopieren</button>
+						<span class="success hidden" aria-hidden="true">Kopiert!</span>
+					</span>
+				</span>
+				<div class="attachment-compat"></div>
+			</div>
+
+			<div class="actions">
+				<# if ( data.link ) { #>
+					<a class="view-attachment" href="{{ data.link }}">Anhang-Seite anschauen</a>
+				<# } #>
+				<# if ( data.can.save ) { #>
+					<# if ( data.link ) { #>
+						<span class="links-separator">|</span>
+					<# } #>
+					<a href="{{ data.editLink }}">Weitere Details bearbeiten</a>
+				<# } #>
+				<# if ( ! data.uploading && data.can.remove ) { #>
+					<# if ( data.link || data.can.save ) { #>
+						<span class="links-separator">|</span>
+					<# } #>
+											<button type="button" class="button-link delete-attachment">Endgültig löschen</button>
+									<# } #>
+			</div>
+		</div>
+	</script>
+
+		<script type="text/html" id="tmpl-attachment">
+		<div class="attachment-preview js--select-attachment type-{{ data.type }} subtype-{{ data.subtype }} {{ data.orientation }}">
+			<div class="thumbnail">
+				<# if ( data.uploading ) { #>
+					<div class="media-progress-bar"><div ></div></div>
+				<# } else if ( 'image' === data.type && data.size && data.size.url ) { #>
+					<div class="centered">
+						<img src="{{ data.size.url }}" draggable="false" alt="" />
+					</div>
+				<# } else { #>
+					<div class="centered">
+						<# if ( data.image && data.image.src && data.image.src !== data.icon ) { #>
+							<img src="{{ data.image.src }}" class="thumbnail" draggable="false" alt="" />
+						<# } else if ( data.sizes && data.sizes.medium ) { #>
+							<img src="{{ data.sizes.medium.url }}" class="thumbnail" draggable="false" alt="" />
+						<# } else { #>
+							<img src="{{ data.icon }}" class="icon" draggable="false" alt="" />
+						<# } #>
+					</div>
+					<div class="filename">
+						<div>{{ data.filename }}</div>
+					</div>
+				<# } #>
+			</div>
+			<# if ( data.buttons.close ) { #>
+				<button type="button" class="button-link attachment-close media-modal-icon"><span class="screen-reader-text">Entfernen</span></button>
+			<# } #>
+		</div>
+		<# if ( data.buttons.check ) { #>
+			<button type="button" class="check" tabindex="-1"><span class="media-modal-icon"></span><span class="screen-reader-text">Abwählen</span></button>
+		<# } #>
+		<#
+		var maybeReadOnly = data.can.save || data.allowLocalEdits ? '' : 'readonly';
+		if ( data.describe ) {
+			if ( 'image' === data.type ) { #>
+				<input type="text" value="{{ data.caption }}" class="describe" data-setting="caption"
+					aria-label="Beschriftung"
+					placeholder="Beschriftung&hellip;" {{ maybeReadOnly }} />
+			<# } else { #>
+				<input type="text" value="{{ data.title }}" class="describe" data-setting="title"
+					<# if ( 'video' === data.type ) { #>
+						aria-label="Videotitel"
+						placeholder="Videotitel&hellip;"
+					<# } else if ( 'audio' === data.type ) { #>
+						aria-label="Audiotitel"
+						placeholder="Audiotitel&hellip;"
+					<# } else { #>
+						aria-label="Medientitel"
+						placeholder="Medientitel&hellip;"
+					<# } #> {{ maybeReadOnly }} />
+			<# }
+		} #>
+	</script>
+
+		<script type="text/html" id="tmpl-attachment-details">
+		<h2>
+			Anhang-Details			<span class="settings-save-status" role="status">
+				<span class="spinner"></span>
+				<span class="saved">Gespeichert.</span>
+			</span>
+		</h2>
+		<div class="attachment-info">
+
+			<# if ( 'audio' === data.type ) { #>
+				<div class="wp-media-wrapper wp-audio">
+					<audio style="visibility: hidden" controls class="wp-audio-shortcode" width="100%" preload="none">
+						<source type="{{ data.mime }}" src="{{ data.url }}"/>
+					</audio>
+				</div>
+			<# } else if ( 'video' === data.type ) {
+				var w_rule = '';
+				if ( data.width ) {
+					w_rule = 'width: ' + data.width + 'px;';
+				} else if ( wp.media.view.settings.contentWidth ) {
+					w_rule = 'width: ' + wp.media.view.settings.contentWidth + 'px;';
+				}
+			#>
+				<div  class="wp-media-wrapper wp-video">
+					<video controls="controls" class="wp-video-shortcode" preload="metadata"
+						<# if ( data.width ) { #>width="{{ data.width }}"<# } #>
+						<# if ( data.height ) { #>height="{{ data.height }}"<# } #>
+						<# if ( data.image && data.image.src !== data.icon ) { #>poster="{{ data.image.src }}"<# } #>>
+						<source type="{{ data.mime }}" src="{{ data.url }}"/>
+					</video>
+				</div>
+			<# } else { #>
+				<div class="thumbnail thumbnail-{{ data.type }}">
+					<# if ( data.uploading ) { #>
+						<div class="media-progress-bar"><div></div></div>
+					<# } else if ( 'image' === data.type && data.size && data.size.url ) { #>
+						<img src="{{ data.size.url }}" draggable="false" alt="" />
+					<# } else { #>
+						<img src="{{ data.icon }}" class="icon" draggable="false" alt="" />
+					<# } #>
+				</div>
+			<# } #>
+
+			<div class="details">
+				<div class="filename">{{ data.filename }}</div>
+				<div class="uploaded">{{ data.dateFormatted }}</div>
+
+				<div class="file-size">{{ data.filesizeHumanReadable }}</div>
+				<# if ( 'image' === data.type && ! data.uploading ) { #>
+					<# if ( data.width && data.height ) { #>
+						<div class="dimensions">
+							{{ data.width }} auf {{ data.height }} Pixel						</div>
+					<# } #>
+
+					<# if ( data.originalImageURL && data.originalImageName ) { #>
+						Originalbild:						<a href="{{ data.originalImageURL }}">{{data.originalImageName}}</a>
+					<# } #>
+
+					<# if ( data.can.save && data.sizes ) { #>
+						<a class="edit-attachment" href="{{ data.editLink }}&amp;image-editor" target="_blank">Bild bearbeiten</a>
+					<# } #>
+				<# } #>
+
+				<# if ( data.fileLength && data.fileLengthHumanReadable ) { #>
+					<div class="file-length">Länge:						<span aria-hidden="true">{{ data.fileLength }}</span>
+						<span class="screen-reader-text">{{ data.fileLengthHumanReadable }}</span>
+					</div>
+				<# } #>
+
+				<# if ( data.mediaStates ) { #>
+					<div class="media-states"><strong>Verwendet als:</strong> {{ data.mediaStates }}</div>
+				<# } #>
+
+				<# if ( ! data.uploading && data.can.remove ) { #>
+											<button type="button" class="button-link delete-attachment">Endgültig löschen</button>
+									<# } #>
+
+				<div class="compat-meta">
+					<# if ( data.compat && data.compat.meta ) { #>
+						{{{ data.compat.meta }}}
+					<# } #>
+				</div>
+			</div>
+		</div>
+		<# var maybeReadOnly = data.can.save || data.allowLocalEdits ? '' : 'readonly'; #>
+		<# if ( 'image' === data.type ) { #>
+			<span class="setting has-description" data-setting="alt">
+				<label for="attachment-details-alt-text" class="name">Alternativtext</label>
+				<input type="text" id="attachment-details-alt-text" value="{{ data.alt }}" aria-describedby="alt-text-description" {{ maybeReadOnly }} />
+			</span>
+			<p class="description" id="alt-text-description"><a href="https://www.w3.org/WAI/tutorials/images/decision-tree" target="_blank" rel="noopener">Beschreibe den Zweck des Bildes<span class="screen-reader-text"> (öffnet in neuem Tab)</span></a>. Leer lassen, wenn das Bild nur als dekoratives Element dient.</p>
+		<# } #>
+				<span class="setting" data-setting="title">
+			<label for="attachment-details-title" class="name">Titel</label>
+			<input type="text" id="attachment-details-title" value="{{ data.title }}" {{ maybeReadOnly }} />
+		</span>
+				<# if ( 'audio' === data.type ) { #>
+				<span class="setting" data-setting="artist">
+			<label for="attachment-details-artist" class="name">Künstler</label>
+			<input type="text" id="attachment-details-artist" value="{{ data.artist || data.meta.artist || '' }}" />
+		</span>
+				<span class="setting" data-setting="album">
+			<label for="attachment-details-album" class="name">Album</label>
+			<input type="text" id="attachment-details-album" value="{{ data.album || data.meta.album || '' }}" />
+		</span>
+				<# } #>
+		<span class="setting" data-setting="caption">
+			<label for="attachment-details-caption" class="name">Beschriftung</label>
+			<textarea id="attachment-details-caption" {{ maybeReadOnly }}>{{ data.caption }}</textarea>
+		</span>
+		<span class="setting" data-setting="description">
+			<label for="attachment-details-description" class="name">Beschreibung</label>
+			<textarea id="attachment-details-description" {{ maybeReadOnly }}>{{ data.description }}</textarea>
+		</span>
+		<span class="setting" data-setting="url">
+			<label for="attachment-details-copy-link" class="name">Datei-URL:</label>
+			<input type="text" class="attachment-details-copy-link" id="attachment-details-copy-link" value="{{ data.url }}" readonly />
+			<div class="copy-to-clipboard-container">
+				<button type="button" class="button button-small copy-attachment-url" data-clipboard-target="#attachment-details-copy-link">URL in die Zwischenablage kopieren</button>
+				<span class="success hidden" aria-hidden="true">Kopiert!</span>
+			</div>
+		</span>
+	</script>
+
+		<script type="text/html" id="tmpl-media-selection">
+		<div class="selection-info">
+			<span class="count"></span>
+			<# if ( data.editable ) { #>
+				<button type="button" class="button-link edit-selection">Auswahl bearbeiten</button>
+			<# } #>
+			<# if ( data.clearable ) { #>
+				<button type="button" class="button-link clear-selection">Leeren</button>
+			<# } #>
+		</div>
+		<div class="selection-view"></div>
+	</script>
+
+		<script type="text/html" id="tmpl-attachment-display-settings">
+		<h2>Anzeige-Einstellungen für Anhänge</h2>
+
+		<# if ( 'image' === data.type ) { #>
+			<span class="setting align">
+				<label for="attachment-display-settings-alignment" class="name">Ausrichtung</label>
+				<select id="attachment-display-settings-alignment" class="alignment"
+					data-setting="align"
+					<# if ( data.userSettings ) { #>
+						data-user-setting="align"
+					<# } #>>
+
+					<option value="left">
+						Links					</option>
+					<option value="center">
+						Zentriert					</option>
+					<option value="right">
+						Rechts					</option>
+					<option value="none" selected>
+						Keine					</option>
+				</select>
+			</span>
+		<# } #>
+
+		<span class="setting">
+			<label for="attachment-display-settings-link-to" class="name">
+				<# if ( data.model.canEmbed ) { #>
+					Einbetten oder verlinken				<# } else { #>
+					Link zur				<# } #>
+			</label>
+			<select id="attachment-display-settings-link-to" class="link-to"
+				data-setting="link"
+				<# if ( data.userSettings && ! data.model.canEmbed ) { #>
+					data-user-setting="urlbutton"
+				<# } #>>
+
+			<# if ( data.model.canEmbed ) { #>
+				<option value="embed" selected>
+					Eingebundener Medien-Player				</option>
+				<option value="file">
+			<# } else { #>
+				<option value="none" selected>
+					Keine				</option>
+				<option value="file">
+			<# } #>
+				<# if ( data.model.canEmbed ) { #>
+					Mediendatei verlinken				<# } else { #>
+					Mediendatei				<# } #>
+				</option>
+				<option value="post">
+				<# if ( data.model.canEmbed ) { #>
+					Anhang-Seite verlinken				<# } else { #>
+					Anhang-Seite				<# } #>
+				</option>
+			<# if ( 'image' === data.type ) { #>
+				<option value="custom">
+					Individuelle URL				</option>
+			<# } #>
+			</select>
+		</span>
+		<span class="setting">
+			<label for="attachment-display-settings-link-to-custom" class="name">URL</label>
+			<input type="text" id="attachment-display-settings-link-to-custom" class="link-to-custom" data-setting="linkUrl" />
+		</span>
+
+		<# if ( 'undefined' !== typeof data.sizes ) { #>
+			<span class="setting">
+				<label for="attachment-display-settings-size" class="name">Größe</label>
+				<select id="attachment-display-settings-size" class="size" name="size"
+					data-setting="size"
+					<# if ( data.userSettings ) { #>
+						data-user-setting="imgsize"
+					<# } #>>
+											<#
+						var size = data.sizes['thumbnail'];
+						if ( size ) { #>
+							<option value="thumbnail" >
+								Vorschaubild &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['medium'];
+						if ( size ) { #>
+							<option value="medium" >
+								Mittel &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['large'];
+						if ( size ) { #>
+							<option value="large" >
+								Groß &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['full'];
+						if ( size ) { #>
+							<option value="full"  selected='selected'>
+								Vollständige Größe &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['square'];
+						if ( size ) { #>
+							<option value="square" >
+								Quadrat &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['featured'];
+						if ( size ) { #>
+							<option value="featured" >
+								&quot;Featured&quot; dünn &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['featured_large'];
+						if ( size ) { #>
+							<option value="featured_large" >
+								&quot;Featured&quot; dick &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['portfolio'];
+						if ( size ) { #>
+							<option value="portfolio" >
+								Portfolio &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['gallery'];
+						if ( size ) { #>
+							<option value="gallery" >
+								Galerie &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['entry_with_sidebar'];
+						if ( size ) { #>
+							<option value="entry_with_sidebar" >
+								Eintrag mit Seitenleiste &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['entry_without_sidebar'];
+						if ( size ) { #>
+							<option value="entry_without_sidebar" >
+								Eintrag ohne Seitenleiste &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+											<#
+						var size = data.sizes['extra_large'];
+						if ( size ) { #>
+							<option value="extra_large" >
+								Vollbild-Abschnitte/-Slider &ndash; {{ size.width }} &times; {{ size.height }}
+							</option>
+						<# } #>
+									</select>
+			</span>
+		<# } #>
+	</script>
+
+		<script type="text/html" id="tmpl-gallery-settings">
+		<h2>Galerie-Einstellungen</h2>
+
+		<span class="setting">
+			<label for="gallery-settings-link-to" class="name">Link zur</label>
+			<select id="gallery-settings-link-to" class="link-to"
+				data-setting="link"
+				<# if ( data.userSettings ) { #>
+					data-user-setting="urlbutton"
+				<# } #>>
+
+				<option value="post" <# if ( ! wp.media.galleryDefaults.link || 'post' === wp.media.galleryDefaults.link ) {
+					#>selected="selected"<# }
+				#>>
+					Anhang-Seite				</option>
+				<option value="file" <# if ( 'file' === wp.media.galleryDefaults.link ) { #>selected="selected"<# } #>>
+					Mediendatei				</option>
+				<option value="none" <# if ( 'none' === wp.media.galleryDefaults.link ) { #>selected="selected"<# } #>>
+					Keine				</option>
+			</select>
+		</span>
+
+		<span class="setting">
+			<label for="gallery-settings-columns" class="name select-label-inline">Spalten</label>
+			<select id="gallery-settings-columns" class="columns" name="columns"
+				data-setting="columns">
+									<option value="1" <#
+						if ( 1 == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+					#>>
+						1					</option>
+									<option value="2" <#
+						if ( 2 == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+					#>>
+						2					</option>
+									<option value="3" <#
+						if ( 3 == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+					#>>
+						3					</option>
+									<option value="4" <#
+						if ( 4 == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+					#>>
+						4					</option>
+									<option value="5" <#
+						if ( 5 == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+					#>>
+						5					</option>
+									<option value="6" <#
+						if ( 6 == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+					#>>
+						6					</option>
+									<option value="7" <#
+						if ( 7 == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+					#>>
+						7					</option>
+									<option value="8" <#
+						if ( 8 == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+					#>>
+						8					</option>
+									<option value="9" <#
+						if ( 9 == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+					#>>
+						9					</option>
+							</select>
+		</span>
+
+		<span class="setting">
+			<input type="checkbox" id="gallery-settings-random-order" data-setting="_orderbyRandom" />
+			<label for="gallery-settings-random-order" class="checkbox-label-inline">Zufällige Sortierung</label>
+		</span>
+
+		<span class="setting size">
+			<label for="gallery-settings-size" class="name">Größe</label>
+			<select id="gallery-settings-size" class="size" name="size"
+				data-setting="size"
+				<# if ( data.userSettings ) { #>
+					data-user-setting="imgsize"
+				<# } #>
+				>
+									<option value="thumbnail">
+						Vorschaubild					</option>
+									<option value="medium">
+						Mittel					</option>
+									<option value="large">
+						Groß					</option>
+									<option value="full">
+						Vollständige Größe					</option>
+									<option value="square">
+						Quadrat					</option>
+									<option value="featured">
+						&quot;Featured&quot; dünn					</option>
+									<option value="featured_large">
+						&quot;Featured&quot; dick					</option>
+									<option value="portfolio">
+						Portfolio					</option>
+									<option value="gallery">
+						Galerie					</option>
+									<option value="entry_with_sidebar">
+						Eintrag mit Seitenleiste					</option>
+									<option value="entry_without_sidebar">
+						Eintrag ohne Seitenleiste					</option>
+									<option value="extra_large">
+						Vollbild-Abschnitte/-Slider					</option>
+							</select>
+		</span>
+	</script>
+
+		<script type="text/html" id="tmpl-playlist-settings">
+		<h2>Einstellungen Wiedergabeliste</h2>
+
+		<# var emptyModel = _.isEmpty( data.model ),
+			isVideo = 'video' === data.controller.get('library').props.get('type'); #>
+
+		<span class="setting">
+			<input type="checkbox" id="playlist-settings-show-list" data-setting="tracklist" <# if ( emptyModel ) { #>
+				checked="checked"
+			<# } #> />
+			<label for="playlist-settings-show-list" class="checkbox-label-inline">
+				<# if ( isVideo ) { #>
+				Videoliste anzeigen				<# } else { #>
+				Titelliste anzeigen				<# } #>
+			</label>
+		</span>
+
+		<# if ( ! isVideo ) { #>
+		<span class="setting">
+			<input type="checkbox" id="playlist-settings-show-artist" data-setting="artists" <# if ( emptyModel ) { #>
+				checked="checked"
+			<# } #> />
+			<label for="playlist-settings-show-artist" class="checkbox-label-inline">
+				Name des Künstlers in der Titelliste anzeigen			</label>
+		</span>
+		<# } #>
+
+		<span class="setting">
+			<input type="checkbox" id="playlist-settings-show-images" data-setting="images" <# if ( emptyModel ) { #>
+				checked="checked"
+			<# } #> />
+			<label for="playlist-settings-show-images" class="checkbox-label-inline">
+				Bilder anzeigen			</label>
+		</span>
+	</script>
+
+		<script type="text/html" id="tmpl-embed-link-settings">
+		<span class="setting link-text">
+			<label for="embed-link-settings-link-text" class="name">Link-Text</label>
+			<input type="text" id="embed-link-settings-link-text" class="alignment" data-setting="linkText" />
+		</span>
+		<div class="embed-container" style="display: none;">
+			<div class="embed-preview"></div>
+		</div>
+	</script>
+
+		<script type="text/html" id="tmpl-embed-image-settings">
+		<div class="wp-clearfix">
+			<div class="thumbnail">
+				<img src="{{ data.model.url }}" draggable="false" alt="" />
+			</div>
+		</div>
+
+		<span class="setting alt-text has-description">
+			<label for="embed-image-settings-alt-text" class="name">Alternativer Text</label>
+			<input type="text" id="embed-image-settings-alt-text" data-setting="alt" aria-describedby="alt-text-description" />
+		</span>
+		<p class="description" id="alt-text-description"><a href="https://www.w3.org/WAI/tutorials/images/decision-tree" target="_blank" rel="noopener">Beschreibe den Zweck des Bildes<span class="screen-reader-text"> (öffnet in neuem Tab)</span></a>. Leer lassen, wenn das Bild nur als dekoratives Element dient.</p>
+
+					<span class="setting caption">
+				<label for="embed-image-settings-caption" class="name">Beschriftung</label>
+				<textarea id="embed-image-settings-caption" data-setting="caption"></textarea>
+			</span>
+		
+		<fieldset class="setting-group">
+			<legend class="name">Ausrichtung</legend>
+			<span class="setting align">
+				<span class="button-group button-large" data-setting="align">
+					<button class="button" value="left">
+						Links					</button>
+					<button class="button" value="center">
+						Zentriert					</button>
+					<button class="button" value="right">
+						Rechts					</button>
+					<button class="button active" value="none">
+						Keine					</button>
+				</span>
+			</span>
+		</fieldset>
+
+		<fieldset class="setting-group">
+			<legend class="name">Link zur</legend>
+			<span class="setting link-to">
+				<span class="button-group button-large" data-setting="link">
+					<button class="button" value="file">
+						Bild-URL					</button>
+					<button class="button" value="custom">
+						Individuelle URL					</button>
+					<button class="button active" value="none">
+						Keine					</button>
+				</span>
+			</span>
+			<span class="setting">
+				<label for="embed-image-settings-link-to-custom" class="name">URL</label>
+				<input type="text" id="embed-image-settings-link-to-custom" class="link-to-custom" data-setting="linkUrl" />
+			</span>
+		</fieldset>
+	</script>
+
+		<script type="text/html" id="tmpl-image-details">
+		<div class="media-embed">
+			<div class="embed-media-settings">
+				<div class="column-settings">
+					<span class="setting alt-text has-description">
+						<label for="image-details-alt-text" class="name">Alternativer Text</label>
+						<input type="text" id="image-details-alt-text" data-setting="alt" value="{{ data.model.alt }}" aria-describedby="alt-text-description" />
+					</span>
+					<p class="description" id="alt-text-description"><a href="https://www.w3.org/WAI/tutorials/images/decision-tree" target="_blank" rel="noopener">Beschreibe den Zweck des Bildes<span class="screen-reader-text"> (öffnet in neuem Tab)</span></a>. Leer lassen, wenn das Bild nur als dekoratives Element dient.</p>
+
+											<span class="setting caption">
+							<label for="image-details-caption" class="name">Beschriftung</label>
+							<textarea id="image-details-caption" data-setting="caption">{{ data.model.caption }}</textarea>
+						</span>
+					
+					<h2>Einstellungen anzeigen</h2>
+					<fieldset class="setting-group">
+						<legend class="legend-inline">Ausrichtung</legend>
+						<span class="setting align">
+							<span class="button-group button-large" data-setting="align">
+								<button class="button" value="left">
+									Links								</button>
+								<button class="button" value="center">
+									Zentriert								</button>
+								<button class="button" value="right">
+									Rechts								</button>
+								<button class="button active" value="none">
+									Keine								</button>
+							</span>
+						</span>
+					</fieldset>
+
+					<# if ( data.attachment ) { #>
+						<# if ( 'undefined' !== typeof data.attachment.sizes ) { #>
+							<span class="setting size">
+								<label for="image-details-size" class="name">Größe</label>
+								<select id="image-details-size" class="size" name="size"
+									data-setting="size"
+									<# if ( data.userSettings ) { #>
+										data-user-setting="imgsize"
+									<# } #>>
+																			<#
+										var size = data.sizes['thumbnail'];
+										if ( size ) { #>
+											<option value="thumbnail">
+												Vorschaubild &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['medium'];
+										if ( size ) { #>
+											<option value="medium">
+												Mittel &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['large'];
+										if ( size ) { #>
+											<option value="large">
+												Groß &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['full'];
+										if ( size ) { #>
+											<option value="full">
+												Vollständige Größe &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['square'];
+										if ( size ) { #>
+											<option value="square">
+												Quadrat &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['featured'];
+										if ( size ) { #>
+											<option value="featured">
+												&quot;Featured&quot; dünn &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['featured_large'];
+										if ( size ) { #>
+											<option value="featured_large">
+												&quot;Featured&quot; dick &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['portfolio'];
+										if ( size ) { #>
+											<option value="portfolio">
+												Portfolio &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['gallery'];
+										if ( size ) { #>
+											<option value="gallery">
+												Galerie &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['entry_with_sidebar'];
+										if ( size ) { #>
+											<option value="entry_with_sidebar">
+												Eintrag mit Seitenleiste &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['entry_without_sidebar'];
+										if ( size ) { #>
+											<option value="entry_without_sidebar">
+												Eintrag ohne Seitenleiste &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																			<#
+										var size = data.sizes['extra_large'];
+										if ( size ) { #>
+											<option value="extra_large">
+												Vollbild-Abschnitte/-Slider &ndash; {{ size.width }} &times; {{ size.height }}
+											</option>
+										<# } #>
+																		<option value="custom">
+										Individuelle Größe									</option>
+								</select>
+							</span>
+						<# } #>
+							<div class="custom-size wp-clearfix<# if ( data.model.size !== 'custom' ) { #> hidden<# } #>">
+								<span class="custom-size-setting">
+									<label for="image-details-size-width">Breite</label>
+									<input type="number" id="image-details-size-width" aria-describedby="image-size-desc" data-setting="customWidth" step="1" value="{{ data.model.customWidth }}" />
+								</span>
+								<span class="sep" aria-hidden="true">&times;</span>
+								<span class="custom-size-setting">
+									<label for="image-details-size-height">Höhe</label>
+									<input type="number" id="image-details-size-height" aria-describedby="image-size-desc" data-setting="customHeight" step="1" value="{{ data.model.customHeight }}" />
+								</span>
+								<p id="image-size-desc" class="description">Bildgröße in Pixeln</p>
+							</div>
+					<# } #>
+
+					<span class="setting link-to">
+						<label for="image-details-link-to" class="name">Link zur</label>
+						<select id="image-details-link-to" data-setting="link">
+						<# if ( data.attachment ) { #>
+							<option value="file">
+								Mediendatei							</option>
+							<option value="post">
+								Anhang-Seite							</option>
+						<# } else { #>
+							<option value="file">
+								Bild-URL							</option>
+						<# } #>
+							<option value="custom">
+								Individuelle URL							</option>
+							<option value="none">
+								Keine							</option>
+						</select>
+					</span>
+					<span class="setting">
+						<label for="image-details-link-to-custom" class="name">URL</label>
+						<input type="text" id="image-details-link-to-custom" class="link-to-custom" data-setting="linkUrl" />
+					</span>
+
+					<div class="advanced-section">
+						<h2><button type="button" class="button-link advanced-toggle">Erweiterte Optionen</button></h2>
+						<div class="advanced-settings hidden">
+							<div class="advanced-image">
+								<span class="setting title-text">
+									<label for="image-details-title-attribute" class="name">Bild title-Attribut</label>
+									<input type="text" id="image-details-title-attribute" data-setting="title" value="{{ data.model.title }}" />
+								</span>
+								<span class="setting extra-classes">
+									<label for="image-details-css-class" class="name">Bild-CSS-Klasse</label>
+									<input type="text" id="image-details-css-class" data-setting="extraClasses" value="{{ data.model.extraClasses }}" />
+								</span>
+							</div>
+							<div class="advanced-link">
+								<span class="setting link-target">
+									<input type="checkbox" id="image-details-link-target" data-setting="linkTargetBlank" value="_blank" <# if ( data.model.linkTargetBlank ) { #>checked="checked"<# } #>>
+									<label for="image-details-link-target" class="checkbox-label">Link in einem neuen Tab öffnen</label>
+								</span>
+								<span class="setting link-rel">
+									<label for="image-details-link-rel" class="name">Link-Beziehung</label>
+									<input type="text" id="image-details-link-rel" data-setting="linkRel" value="{{ data.model.linkRel }}" />
+								</span>
+								<span class="setting link-class-name">
+									<label for="image-details-link-css-class" class="name">CSS-Klasse des Links</label>
+									<input type="text" id="image-details-link-css-class" data-setting="linkClassName" value="{{ data.model.linkClassName }}" />
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="column-image">
+					<div class="image">
+						<img src="{{ data.model.url }}" draggable="false" alt="" />
+						<# if ( data.attachment && window.imageEdit ) { #>
+							<div class="actions">
+								<input type="button" class="edit-attachment button" value="Original bearbeiten" />
+								<input type="button" class="replace-attachment button" value="Ersetzen" />
+							</div>
+						<# } #>
+					</div>
+				</div>
+			</div>
+		</div>
+	</script>
+
+		<script type="text/html" id="tmpl-image-editor">
+		<div id="media-head-{{ data.id }}"></div>
+		<div id="image-editor-{{ data.id }}"></div>
+	</script>
+
+		<script type="text/html" id="tmpl-audio-details">
+		<# var ext, html5types = {
+			mp3: wp.media.view.settings.embedMimes.mp3,
+			ogg: wp.media.view.settings.embedMimes.ogg
+		}; #>
+
+				<div class="media-embed media-embed-details">
+			<div class="embed-media-settings embed-audio-settings">
+				<audio style="visibility: hidden"
+	controls
+	class="wp-audio-shortcode"
+	width="{{ _.isUndefined( data.model.width ) ? 400 : data.model.width }}"
+	preload="{{ _.isUndefined( data.model.preload ) ? 'none' : data.model.preload }}"
+	<#
+		if ( ! _.isUndefined( data.model.autoplay ) && data.model.autoplay ) {
+		#> autoplay<#
+	}
+		if ( ! _.isUndefined( data.model.loop ) && data.model.loop ) {
+		#> loop<#
+	}
+	#>
+>
+	<# if ( ! _.isEmpty( data.model.src ) ) { #>
+	<source src="{{ data.model.src }}" type="{{ wp.media.view.settings.embedMimes[ data.model.src.split('.').pop() ] }}" />
+	<# } #>
+
+		<# if ( ! _.isEmpty( data.model.mp3 ) ) { #>
+	<source src="{{ data.model.mp3 }}" type="{{ wp.media.view.settings.embedMimes[ 'mp3' ] }}" />
+	<# } #>
+			<# if ( ! _.isEmpty( data.model.ogg ) ) { #>
+	<source src="{{ data.model.ogg }}" type="{{ wp.media.view.settings.embedMimes[ 'ogg' ] }}" />
+	<# } #>
+			<# if ( ! _.isEmpty( data.model.flac ) ) { #>
+	<source src="{{ data.model.flac }}" type="{{ wp.media.view.settings.embedMimes[ 'flac' ] }}" />
+	<# } #>
+			<# if ( ! _.isEmpty( data.model.m4a ) ) { #>
+	<source src="{{ data.model.m4a }}" type="{{ wp.media.view.settings.embedMimes[ 'm4a' ] }}" />
+	<# } #>
+			<# if ( ! _.isEmpty( data.model.wav ) ) { #>
+	<source src="{{ data.model.wav }}" type="{{ wp.media.view.settings.embedMimes[ 'wav' ] }}" />
+	<# } #>
+		</audio>
+	
+				<# if ( ! _.isEmpty( data.model.src ) ) {
+					ext = data.model.src.split('.').pop();
+					if ( html5types[ ext ] ) {
+						delete html5types[ ext ];
+					}
+				#>
+				<span class="setting">
+					<label for="audio-details-source" class="name">URL</label>
+					<input type="text" id="audio-details-source" readonly data-setting="src" value="{{ data.model.src }}" />
+					<button type="button" class="button-link remove-setting">Audio-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.mp3 ) ) {
+					if ( ! _.isUndefined( html5types.mp3 ) ) {
+						delete html5types.mp3;
+					}
+				#>
+				<span class="setting">
+					<label for="audio-details-mp3-source" class="name">MP3</label>
+					<input type="text" id="audio-details-mp3-source" readonly data-setting="mp3" value="{{ data.model.mp3 }}" />
+					<button type="button" class="button-link remove-setting">Audio-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.ogg ) ) {
+					if ( ! _.isUndefined( html5types.ogg ) ) {
+						delete html5types.ogg;
+					}
+				#>
+				<span class="setting">
+					<label for="audio-details-ogg-source" class="name">OGG</label>
+					<input type="text" id="audio-details-ogg-source" readonly data-setting="ogg" value="{{ data.model.ogg }}" />
+					<button type="button" class="button-link remove-setting">Audio-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.flac ) ) {
+					if ( ! _.isUndefined( html5types.flac ) ) {
+						delete html5types.flac;
+					}
+				#>
+				<span class="setting">
+					<label for="audio-details-flac-source" class="name">FLAC</label>
+					<input type="text" id="audio-details-flac-source" readonly data-setting="flac" value="{{ data.model.flac }}" />
+					<button type="button" class="button-link remove-setting">Audio-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.m4a ) ) {
+					if ( ! _.isUndefined( html5types.m4a ) ) {
+						delete html5types.m4a;
+					}
+				#>
+				<span class="setting">
+					<label for="audio-details-m4a-source" class="name">M4A</label>
+					<input type="text" id="audio-details-m4a-source" readonly data-setting="m4a" value="{{ data.model.m4a }}" />
+					<button type="button" class="button-link remove-setting">Audio-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.wav ) ) {
+					if ( ! _.isUndefined( html5types.wav ) ) {
+						delete html5types.wav;
+					}
+				#>
+				<span class="setting">
+					<label for="audio-details-wav-source" class="name">WAV</label>
+					<input type="text" id="audio-details-wav-source" readonly data-setting="wav" value="{{ data.model.wav }}" />
+					<button type="button" class="button-link remove-setting">Audio-Quelle entfernen</button>
+				</span>
+				<# } #>
+				
+				<# if ( ! _.isEmpty( html5types ) ) { #>
+				<fieldset class="setting-group">
+					<legend class="name">Füge alternative Quellen hinzu, um eine optimale HTML5-Wiedergabe zu gewährleisten</legend>
+					<span class="setting">
+						<span class="button-large">
+						<# _.each( html5types, function (mime, type) { #>
+							<button class="button add-media-source" data-mime="{{ mime }}">{{ type }}</button>
+						<# } ) #>
+						</span>
+					</span>
+				</fieldset>
+				<# } #>
+
+				<fieldset class="setting-group">
+					<legend class="name">Vorladen</legend>
+					<span class="setting preload">
+						<span class="button-group button-large" data-setting="preload">
+							<button class="button" value="auto">Automatisch</button>
+							<button class="button" value="metadata">Metadaten</button>
+							<button class="button active" value="none">Keine</button>
+						</span>
+					</span>
+				</fieldset>
+
+				<span class="setting-group">
+					<span class="setting checkbox-setting autoplay">
+						<input type="checkbox" id="audio-details-autoplay" data-setting="autoplay" />
+						<label for="audio-details-autoplay" class="checkbox-label">Autoplay</label>
+					</span>
+
+					<span class="setting checkbox-setting">
+						<input type="checkbox" id="audio-details-loop" data-setting="loop" />
+						<label for="audio-details-loop" class="checkbox-label">Schleife</label>
+					</span>
+				</span>
+			</div>
+		</div>
+	</script>
+
+		<script type="text/html" id="tmpl-video-details">
+		<# var ext, html5types = {
+			mp4: wp.media.view.settings.embedMimes.mp4,
+			ogv: wp.media.view.settings.embedMimes.ogv,
+			webm: wp.media.view.settings.embedMimes.webm
+		}; #>
+
+				<div class="media-embed media-embed-details">
+			<div class="embed-media-settings embed-video-settings">
+				<div class="wp-video-holder">
+				<#
+				var w = ! data.model.width || data.model.width > 640 ? 640 : data.model.width,
+					h = ! data.model.height ? 360 : data.model.height;
+
+				if ( data.model.width && w !== data.model.width ) {
+					h = Math.ceil( ( h * w ) / data.model.width );
+				}
+				#>
+
+				<#  var w_rule = '', classes = [],
+		w, h, settings = wp.media.view.settings,
+		isYouTube = isVimeo = false;
+
+	if ( ! _.isEmpty( data.model.src ) ) {
+		isYouTube = data.model.src.match(/youtube|youtu\.be/);
+		isVimeo = -1 !== data.model.src.indexOf('vimeo');
+	}
+
+	if ( settings.contentWidth && data.model.width >= settings.contentWidth ) {
+		w = settings.contentWidth;
+	} else {
+		w = data.model.width;
+	}
+
+	if ( w !== data.model.width ) {
+		h = Math.ceil( ( data.model.height * w ) / data.model.width );
+	} else {
+		h = data.model.height;
+	}
+
+	if ( w ) {
+		w_rule = 'width: ' + w + 'px; ';
+	}
+
+	if ( isYouTube ) {
+		classes.push( 'youtube-video' );
+	}
+
+	if ( isVimeo ) {
+		classes.push( 'vimeo-video' );
+	}
+
+#>
+<div class="wp-video">
+<video controls
+	class="wp-video-shortcode {{ classes.join( ' ' ) }}"
+	<# if ( w ) { #>width="{{ w }}"<# } #>
+	<# if ( h ) { #>height="{{ h }}"<# } #>
+			<#
+		if ( ! _.isUndefined( data.model.poster ) && data.model.poster ) {
+			#> poster="{{ data.model.poster }}"<#
+		} #>
+			preload			="{{ _.isUndefined( data.model.preload ) ? 'metadata' : data.model.preload }}"
+				<#
+		if ( ! _.isUndefined( data.model.autoplay ) && data.model.autoplay ) {
+		#> autoplay<#
+	}
+		if ( ! _.isUndefined( data.model.loop ) && data.model.loop ) {
+		#> loop<#
+	}
+	#>
+>
+	<# if ( ! _.isEmpty( data.model.src ) ) {
+		if ( isYouTube ) { #>
+		<source src="{{ data.model.src }}" type="video/youtube" />
+		<# } else if ( isVimeo ) { #>
+		<source src="{{ data.model.src }}" type="video/vimeo" />
+		<# } else { #>
+		<source src="{{ data.model.src }}" type="{{ settings.embedMimes[ data.model.src.split('.').pop() ] }}" />
+		<# }
+	} #>
+
+		<# if ( data.model.mp4 ) { #>
+	<source src="{{ data.model.mp4 }}" type="{{ settings.embedMimes[ 'mp4' ] }}" />
+	<# } #>
+		<# if ( data.model.m4v ) { #>
+	<source src="{{ data.model.m4v }}" type="{{ settings.embedMimes[ 'm4v' ] }}" />
+	<# } #>
+		<# if ( data.model.webm ) { #>
+	<source src="{{ data.model.webm }}" type="{{ settings.embedMimes[ 'webm' ] }}" />
+	<# } #>
+		<# if ( data.model.ogv ) { #>
+	<source src="{{ data.model.ogv }}" type="{{ settings.embedMimes[ 'ogv' ] }}" />
+	<# } #>
+		<# if ( data.model.flv ) { #>
+	<source src="{{ data.model.flv }}" type="{{ settings.embedMimes[ 'flv' ] }}" />
+	<# } #>
+		{{{ data.model.content }}}
+</video>
+</div>
+	
+				<# if ( ! _.isEmpty( data.model.src ) ) {
+					ext = data.model.src.split('.').pop();
+					if ( html5types[ ext ] ) {
+						delete html5types[ ext ];
+					}
+				#>
+				<span class="setting">
+					<label for="video-details-source" class="name">URL</label>
+					<input type="text" id="video-details-source" readonly data-setting="src" value="{{ data.model.src }}" />
+					<button type="button" class="button-link remove-setting">Video-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.mp4 ) ) {
+					if ( ! _.isUndefined( html5types.mp4 ) ) {
+						delete html5types.mp4;
+					}
+				#>
+				<span class="setting">
+					<label for="video-details-mp4-source" class="name">MP4</label>
+					<input type="text" id="video-details-mp4-source" readonly data-setting="mp4" value="{{ data.model.mp4 }}" />
+					<button type="button" class="button-link remove-setting">Video-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.m4v ) ) {
+					if ( ! _.isUndefined( html5types.m4v ) ) {
+						delete html5types.m4v;
+					}
+				#>
+				<span class="setting">
+					<label for="video-details-m4v-source" class="name">M4V</label>
+					<input type="text" id="video-details-m4v-source" readonly data-setting="m4v" value="{{ data.model.m4v }}" />
+					<button type="button" class="button-link remove-setting">Video-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.webm ) ) {
+					if ( ! _.isUndefined( html5types.webm ) ) {
+						delete html5types.webm;
+					}
+				#>
+				<span class="setting">
+					<label for="video-details-webm-source" class="name">WEBM</label>
+					<input type="text" id="video-details-webm-source" readonly data-setting="webm" value="{{ data.model.webm }}" />
+					<button type="button" class="button-link remove-setting">Video-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.ogv ) ) {
+					if ( ! _.isUndefined( html5types.ogv ) ) {
+						delete html5types.ogv;
+					}
+				#>
+				<span class="setting">
+					<label for="video-details-ogv-source" class="name">OGV</label>
+					<input type="text" id="video-details-ogv-source" readonly data-setting="ogv" value="{{ data.model.ogv }}" />
+					<button type="button" class="button-link remove-setting">Video-Quelle entfernen</button>
+				</span>
+				<# } #>
+								<# if ( ! _.isEmpty( data.model.flv ) ) {
+					if ( ! _.isUndefined( html5types.flv ) ) {
+						delete html5types.flv;
+					}
+				#>
+				<span class="setting">
+					<label for="video-details-flv-source" class="name">FLV</label>
+					<input type="text" id="video-details-flv-source" readonly data-setting="flv" value="{{ data.model.flv }}" />
+					<button type="button" class="button-link remove-setting">Video-Quelle entfernen</button>
+				</span>
+				<# } #>
+								</div>
+
+				<# if ( ! _.isEmpty( html5types ) ) { #>
+				<fieldset class="setting-group">
+					<legend class="name">Füge alternative Quellen hinzu, um eine optimale HTML5-Wiedergabe zu gewährleisten</legend>
+					<span class="setting">
+						<span class="button-large">
+						<# _.each( html5types, function (mime, type) { #>
+							<button class="button add-media-source" data-mime="{{ mime }}">{{ type }}</button>
+						<# } ) #>
+						</span>
+					</span>
+				</fieldset>
+				<# } #>
+
+				<# if ( ! _.isEmpty( data.model.poster ) ) { #>
+				<span class="setting">
+					<label for="video-details-poster-image" class="name">Vorschaubild</label>
+					<input type="text" id="video-details-poster-image" readonly data-setting="poster" value="{{ data.model.poster }}" />
+					<button type="button" class="button-link remove-setting">Vorschaubild entfernen</button>
+				</span>
+				<# } #>
+
+				<fieldset class="setting-group">
+					<legend class="name">Vorladen</legend>
+					<span class="setting preload">
+						<span class="button-group button-large" data-setting="preload">
+							<button class="button" value="auto">Automatisch</button>
+							<button class="button" value="metadata">Metadaten</button>
+							<button class="button active" value="none">Keine</button>
+						</span>
+					</span>
+				</fieldset>
+
+				<span class="setting-group">
+					<span class="setting checkbox-setting autoplay">
+						<input type="checkbox" id="video-details-autoplay" data-setting="autoplay" />
+						<label for="video-details-autoplay" class="checkbox-label">Autoplay</label>
+					</span>
+
+					<span class="setting checkbox-setting">
+						<input type="checkbox" id="video-details-loop" data-setting="loop" />
+						<label for="video-details-loop" class="checkbox-label">Schleife</label>
+					</span>
+				</span>
+
+				<span class="setting" data-setting="content">
+					<#
+					var content = '';
+					if ( ! _.isEmpty( data.model.content ) ) {
+						var tracks = jQuery( data.model.content ).filter( 'track' );
+						_.each( tracks.toArray(), function( track, index ) {
+							content += track.outerHTML; #>
+						<label for="video-details-track-{{ index }}" class="name">Titel (Untertitel, Beschriftungen, Beschreibungen, Kapitel oder Metadaten)</label>
+						<input class="content-track" type="text" id="video-details-track-{{ index }}" aria-describedby="video-details-track-desc-{{ index }}" value="{{ track.outerHTML }}" />
+						<span class="description" id="video-details-track-desc-{{ index }}">
+						Die Werte srclang, label und kind können bearbeitet werden, um die Sprache und Art der Videospur festzulegen.						</span>
+						<button type="button" class="button-link remove-setting remove-track">Video-Track entfernen</button><br/>
+						<# } ); #>
+					<# } else { #>
+					<span class="name">Titel (Untertitel, Beschriftungen, Beschreibungen, Kapitel oder Metadaten)</span><br />
+					<em>Es gibt keine zugehörigen Untertitel.</em>
+					<# } #>
+					<textarea class="hidden content-setting">{{ content }}</textarea>
+				</span>
+			</div>
+		</div>
+	</script>
+
+		<script type="text/html" id="tmpl-editor-gallery">
+		<# if ( data.attachments.length ) { #>
+			<div class="gallery gallery-columns-{{ data.columns }}">
+				<# _.each( data.attachments, function( attachment, index ) { #>
+					<dl class="gallery-item">
+						<dt class="gallery-icon">
+							<# if ( attachment.thumbnail ) { #>
+								<img src="{{ attachment.thumbnail.url }}" width="{{ attachment.thumbnail.width }}" height="{{ attachment.thumbnail.height }}" alt="{{ attachment.alt }}" />
+							<# } else { #>
+								<img src="{{ attachment.url }}" alt="{{ attachment.alt }}" />
+							<# } #>
+						</dt>
+						<# if ( attachment.caption ) { #>
+							<dd class="wp-caption-text gallery-caption">
+								{{{ data.verifyHTML( attachment.caption ) }}}
+							</dd>
+						<# } #>
+					</dl>
+					<# if ( index % data.columns === data.columns - 1 ) { #>
+						<br style="clear: both;">
+					<# } #>
+				<# } ); #>
+			</div>
+		<# } else { #>
+			<div class="wpview-error">
+				<div class="dashicons dashicons-format-gallery"></div><p>Keine Elemente gefunden.</p>
+			</div>
+		<# } #>
+	</script>
+
+		<script type="text/html" id="tmpl-crop-content">
+		<img class="crop-image" src="{{ data.url }}" alt="Vorschau des Bereichs &#8222;Bilder zuschneiden&#8220;. Erfordert Maus-Interaktion.">
+		<div class="upload-errors"></div>
+	</script>
+
+		<script type="text/html" id="tmpl-site-icon-preview">
+		<h2>Vorschau</h2>
+		<strong aria-hidden="true">Als Browser-Icon</strong>
+		<div class="favicon-preview">
+			<img src="https://marathon.l-mobile.com/wp-admin/images/browser.png" class="browser-preview" width="182" height="" alt="" />
+
+			<div class="favicon">
+				<img id="preview-favicon" src="{{ data.url }}" alt="Vorschau als Browser-Icon"/>
+			</div>
+			<span class="browser-title" aria-hidden="true"><# print( 'L-mobile Marathon' ) #></span>
+		</div>
+
+		<strong aria-hidden="true">Als App-Icon</strong>
+		<div class="app-icon-preview">
+			<img id="preview-app-icon" src="{{ data.url }}" alt="Vorschau als App-Icon"/>
+		</div>
+	</script>
+
+	<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/js/avia.js?ver=4.7.6.4' id='avia-default-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/js/shortcodes.js?ver=4.7.6.4' id='avia-shortcodes-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/gallery/gallery.js?ver=5.6.2' id='avia-module-gallery-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/portfolio/isotope.js?ver=5.6.2' id='avia-module-isotope-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/masonry_entries/masonry_entries.js?ver=5.6.2' id='avia-module-masonry-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/slideshow/slideshow.js?ver=5.6.2' id='avia-module-slideshow-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/slideshow/slideshow-video.js?ver=5.6.2' id='avia-module-slideshow-video-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/tabs/tabs.js?ver=5.6.2' id='avia-module-tabs-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/toggles/toggles.js?ver=5.6.2' id='avia-module-toggles-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/config-templatebuilder/avia-shortcodes/video/video.js?ver=5.6.2' id='avia-module-video-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-includes/js/jquery/ui/core.min.js?ver=1.12.1' id='jquery-ui-core-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-includes/js/jquery/ui/datepicker.min.js?ver=1.12.1' id='jquery-ui-datepicker-js'></script>
+<script type='text/javascript' id='jquery-ui-datepicker-js-after'>
+jQuery(document).ready(function(jQuery){jQuery.datepicker.setDefaults({"closeText":"Schlie\u00dfen","currentText":"Heute","monthNames":["Januar","Februar","M\u00e4rz","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],"monthNamesShort":["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],"nextText":"Weiter","prevText":"Vorherige","dayNames":["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],"dayNamesShort":["So","Mo","Di","Mi","Do","Fr","Sa"],"dayNamesMin":["S","M","D","M","D","F","S"],"dateFormat":"MM d, yy","firstDay":1,"isRTL":false});});
+</script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/js/jquery.typewatch.js?ver=5.19.1' id='mec-typekit-script-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/featherlight/featherlight.js?ver=5.19.1' id='featherlight-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/select2/select2.full.min.js?ver=5.19.1' id='mec-select2-script-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/tooltip/tooltip.js?ver=5.19.1' id='mec-tooltip-script-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/lity/lity.min.js?ver=5.19.1' id='mec-lity-script-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/colorbrightness/colorbrightness.min.js?ver=5.19.1' id='mec-colorbrightness-script-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/plugins/modern-events-calendar/assets/packages/owl-carousel/owl.carousel.min.js?ver=5.19.1' id='mec-owl-carousel-script-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-includes/js/underscore.min.js?ver=1.8.3' id='underscore-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-includes/js/shortcode.min.js?ver=5.6.2' id='shortcode-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/js/aviapopup/jquery.magnific-popup.min.js?ver=4.7.6.4' id='avia-popup-js-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/js/avia-snippet-lightbox.js?ver=4.7.6.4' id='avia-lightbox-activation-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/js/avia-snippet-sticky-header.js?ver=4.7.6.4' id='avia-sticky-header-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-content/themes/enfold/js/avia-snippet-widget.js?ver=4.7.6.4' id='avia-widget-js-js'></script>
+<script type='text/javascript' src='https://marathon.l-mobile.com/wp-includes/js/wp-embed.min.js?ver=5.6.2' id='wp-embed-js'></script>
+<script src="/axios/dist/axios.min.js"></script>
+<script src="/jquery/dist/jquery.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>
+
+    <%}%>

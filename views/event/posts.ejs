@@ -1,0 +1,38 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
+<div class="container mt-5">
+    <%- include('../partials/flashMessages') -%>
+    <a href="/HayaM3ana/createpost"> <button type="button" class="btn btn-outline-success ">Add Post</button></a>
+    <div class="shadow-sm p-3 mb-3 bg-body rounded mt-2">
+        <div >
+            <h2 style="font-family:Didot;" >All Posts</h2>
+            <hr>
+            </div>
+              </div>
+            <% chunkallp.forEach((HayaM3anaallp)=> {%>
+                 <% HayaM3anaallp.forEach((post)=> {%>
+                        <div class="shadow-sm p-3 mb-3 bg-body rounded mt-2">
+                        <div>
+                            <h4 class="text-primary"><a><%= post.title%></a></h4>
+                            <h6><b><%=post.description.substr(0, 34)%></b></h6>
+                        <p style="font-family:Didot;" ><%=post.poster%> </p> 
+                         </div>
+                         
+                        </div>
+                        <% if ((user) && (user.id == post.user_id )) {%>
+                            <a href="<%= '/HayaM3ana/editpost/' + post.id %>"  class="btn btn-primary">Edit</a>
+                            <button class="btn btn-danger" onclick="deleteEvent()" id="deleteBtn" data-id="<%= post.id%>">Delete</button>
+                        <%} else {%>
+             
+                            <%}%>
+                        <hr>
+                      <%})%>
+                
+           
+              <%})%>
+            
+      
+    </div>
+</div>
+
+<%- include('../partials/footer') -%>

@@ -1,0 +1,37 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
+<div class="container">
+        <div class="row shadow-sm p-3 mb-3 bg-body rounded  mt-5">
+        <div class="col-md-12">
+            <h2 style="font-family:Didot;">Edit Event Attribut:</h2>
+            <hr>
+       
+            <%- include('../partials/flashMessages') -%>      
+            <form  action="/events/updateatt" method="post">
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <input type="text" name="type" minlength="5" placeholder="Type" required id="type" class="form-control">
+                </div>
+                <input type="hidden" name="id" value="<%=event.id%>">
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <input type="text" name="course" placeholder="Course" id="course" required class="form-control">
+                </div>
+                            
+                            <div class="form-group">
+                                <label for="notes">Notes</label>
+                               <textarea name="notes" id="notes" placeholder="notes" rows="4" class="form-control"></textarea>
+                            </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+            </form>
+       
+    </div>
+    <hr>
+<div class="p-3 sticky-bottom">&copy; Raed ElMajdoub. All rights reserved.</div>
+<hr>
+</div>
+
+    
+<%- include('../partials/footer') -%>

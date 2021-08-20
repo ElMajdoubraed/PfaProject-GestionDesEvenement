@@ -1,0 +1,46 @@
+<% if((user)&&(user.admin=="true")) { %>
+<%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
+<div class="container  mt-5">
+  <% chunkall.forEach((HayaM3anaall)=> { ijj=0%>
+        <% HayaM3anaall.forEach((eventatt)=> {%>
+  <% if ((user) && (user.admin== "true")&&(ijj==0)) {%>
+    <div class="mb-3">
+        <a href="<%=  '/events/show/' + eventatt.event_id %>"><h3 class="text-info">Back to the event</h3></a>
+    </div>
+    <%ijj=1 }%>
+    <%})%>
+     <%})%>
+<% chunkall.forEach((HayaM3anaall)=> {%>
+    <div class="row">
+        <% HayaM3anaall.forEach((eventatt)=> {%>
+          <div class="col-xl-4 col-12">
+            <div class="card mb-3">
+              <div class="card-header">
+                <%if (eventatt.status=="Open")  {%>
+              <h5 class="text-success"> <%=eventatt.status%></h5>
+              <%} else { %>
+                <h5 class="text-danger"> <%=eventatt.status%></h5>
+                <%}%>
+              </div>
+              <div class="card-body">
+                <a href="<%=  '/events/showatt/'  + eventatt.id %>"><h4 class="text-info"><%=eventatt.type.substring(0,25) %></h4></a>
+                <h6><b>Course :</b> <%=eventatt.course%></h6>
+                <h6> <b>Notes : </b><%=eventatt.remarque%> </h6>
+              </div>
+            </div>
+              
+          </div>
+          <%})%>
+    </div>
+
+  <%})%>
+</div>
+<%- include('../partials/footer.ejs') -%>
+<%}else { %>
+  <% chunkall.forEach((HayaM3anaall)=> {%>
+    <% HayaM3anaall.forEach((eventatt)=> {%>
+  <li><a href="<%=  '/events/showatt/'  + eventatt.id %>"><%=eventatt.type %></a></li>
+  <%})%>
+  <%})%>
+  <%}  %>

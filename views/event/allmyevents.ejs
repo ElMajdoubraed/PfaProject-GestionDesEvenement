@@ -1,0 +1,44 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
+
+<% if ((user)&&(user.block=="true")) { %>
+  <div class="container mt-5">
+    <div class="alert alert-danger text-center" role="alert">
+      ** All posts are monitored by the administration, and all violators are banned. **
+    </div>
+  </div>
+  <% } else { %>
+   
+<div class="container">
+  
+    <div class="row mt-5">
+<div class="col md-12">
+    <%- include('../partials/flashMessages') -%>
+</div>      
+    
+    </div>
+
+    
+    <div class="shadow-sm p-3 mb-3 bg-body rounded mt-5">
+  <% chunkrunp.forEach((HayaM3anap)=> {%>
+    <div class="row">
+        <% HayaM3anap.forEach((run)=> {%>
+
+            <div class="card mb-3">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+                <a href="<%=  '/events/showatt/'  + run.eventatt_id %>" class="card-title "><h4 class="text-info"><%=run.eventatt_id%></h4></a>
+              </div>
+            </div>
+              
+          </div>
+          <%})%>
+    </div>
+
+  <%})%>
+
+
+<%}%>
+<%- include('../partials/copyright') -%>
+<%- include('../partials/footer') -%>

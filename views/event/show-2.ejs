@@ -1,0 +1,44 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
+<div class="container">
+<div class="mt-4">
+   
+    <div class="col-md-9 offset-md-1">
+        <div class="card">
+                    
+            <div class="card-body">
+                <h5 class="card-title"><%=event.name %></h5>
+                <hr>
+                <%if (event.status=="Open")  {%>
+                    <h5 class="text-success"> <%=event.status%></h5>
+                    <%} else { %>
+                      <h5 class="text-danger"> <%=event.status%></h5>
+                      <%}%>
+                <p>Start date : <span class="badge badge-success"><%=event.startdate.toDateString()%></span> </p>
+                <p>End date : <span class="badge badge-danger"><%=event.enddate.toDateString()%></span> </p>
+                <p class="card-text">Max participants : <%=event.max%></p>
+                <p>Created at : <span class="badge badge-secondary"><%=event.created_at.toDateString()%></span> </p>
+                <%if ((event.remarque==null)||(event.remarque==""))  {%>
+                    <%} else { %>
+                      <p><b>Notes : </b> <%=event.remarque%></p>
+                      <%}%>
+                <% if ((user) && (user.admin== "true")) {%>
+                    <a href="<%= '/events/edit/'+ event.id %>" class="btn btn-primary">Edit</a>
+                    <button class="btn btn-danger" onclick="deleteEvent()" id="deleteBtn" data-id="<%= event.id%>">Delete</button>
+                <%} else {%>
+
+                    <%}%>
+                    <br class=>
+                    <a href="<%=  '/events/EventAttribut/'+ event.id %>"><button class="btn btn-primary btn-margin mt-2">Show event attribut</button></a>
+            </div>
+        </div>
+        <% if((user)&&(user.admin=="true")&&(event.status=="Open")) { %>
+            <a href="<%=  '/events/createatt/'+ event.id %>"><button class="btn btn-success mt-5"> Add EventAttribut</button></a>
+            <%}%>
+    </div>
+   
+</div>
+
+</div>
+
+<%- include('../partials/footer.ejs') -%>

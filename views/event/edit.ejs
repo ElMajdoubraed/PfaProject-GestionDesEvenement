@@ -1,0 +1,55 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/navbar') -%>
+<div class="container">
+    <div class="row shadow-sm p-3 mb-3 bg-body rounded  mt-5">
+        <div class="col-12">
+            <h2 style="font-family:Didot;">Edit the Event:</h2>
+            <hr>
+
+            <%- include('../partials/flashMessages') -%>
+            <form action="/events/update" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" value="<%=event.name%>" name="name" placeholder="Name" id="name" class="form-control" required minlength="5">
+                </div>
+                <input type="hidden" name="id" value="<%=event.id%>">
+                    <div class="form-group">
+                            <label for="max">Max participants</label>
+                            <input type="number" value="<%=event.max%>" name="max" placeholder="Max participants" id="max" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                                <label for="date">Start date</label>
+                                <input type="date" value="<%=event.startdate%>" name="date" id="date" min="2021-06-06" max="2023-12-31" value="" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateend">End date</label>
+                                <input type="date" name="dateend" id="dateend" value="<%= event.enddate%>"  min="2021-06-06" max="2023-12-31" class="form-control" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="typestatus">Choose...</label>
+                                </div>
+            
+                                <select class="custom-select" id="typestatus" value="<%=event.status%>" name="typestatus" required>
+                                    <option value="Open">Open</option>
+                                    <option value="Close">Close</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Notes</label>
+                               <textarea name="notes" id="notes" value="<%=event.remarque%>" placeholder="notes" rows="4" class="form-control"></textarea>
+                            </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"> Update</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="p-3 sticky-bottom">&copy; Raed ElMajdoub. All rights reserved.</div>
+        <hr>
+    </div>
+</div>
+
+
+<%- include('../partials/footer') -%>
