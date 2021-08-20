@@ -1,0 +1,35 @@
+{
+    "name": "HayaM3ana",
+    "shortname": "HayaM3ana",
+    "icons": [{
+        "src": "icons/icon-128.png",
+        "sizes": "128*128",
+        "type": "image/png"
+    }, {
+        "src": "icons/icon-144.png",
+        "sizes": "144*144",
+        "type": "image/png"
+    }, {
+        "src": "icons/icon-152.png",
+        "sizes": "152*152",
+        "type": "image/png"
+    }, {
+        "src": "icons/icon-192.png",
+        "sizes": "192*192",
+        "type": "image/png"
+    }, {
+        "src": "icons/icon-256.png",
+        "sizes": "256*256",
+        "type": "image/png"
+    }, {
+        "src": "icons/icon-512.png",
+        "sizes": "512*512",
+        "type": "image/png"
+    }],
+        "start_url":"/",
+        "lang":"en-US",
+        "display":"standalone",
+        "theme_color":"#17A2B4",
+        "background_color":"#17A2B4"
+
+}
